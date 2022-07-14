@@ -1,9 +1,14 @@
+import GlobalStyle from "./GlobalStyled";
+import { Router } from "./routes/Router";
+import { ThemeProvider,  } from "@mui/material"
+import theme from "./constants/Theme";
 
 const App = () => {
   return (
-    <div className="App">        
-        aaaaaaaaaaa
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle/>    
+      <Router/> 
+    </ThemeProvider>
   );
 }
 
