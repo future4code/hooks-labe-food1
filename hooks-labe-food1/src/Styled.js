@@ -46,7 +46,6 @@ height: 42px;
 padding: 12px 16px;
 border-radius: 2px;
 margin: 8px 16px 16px;
-
 `;
 
 
@@ -56,3 +55,10 @@ export const LogoSvg= styled.img`
   margin: 88px 128px 16px;
   object-fit: contain;
   `
+
+export const DivH1 = styled.div`
+width: 360px;
+height: 42px;
+margin: 16px 0 0;
+padding: 12px 32px;
+`
