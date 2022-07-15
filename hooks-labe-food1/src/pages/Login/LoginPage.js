@@ -18,7 +18,7 @@ import {
 } from "../../Styled";
 import { LogoSvg } from "../../Styled";
 import logo from "../../assets/logo-future-eats-invert.svg";
-import { DivH1 } from "./StyledLonginPage";
+import { DivH1 } from "./StyledLoginPage";
 
 const LoginPage = () => {
   const [values, setValues] = useState({
