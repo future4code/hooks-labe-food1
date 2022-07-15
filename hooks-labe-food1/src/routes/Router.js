@@ -5,6 +5,7 @@ import ErrorPage from '../pages/Error/ErrorPage'
 import Home from '../pages/Home/Home'
 import LoginPage from '../pages/Login/LoginPage'
 import EditAdressPage from '../pages/Profile/EditAdressPage'
+import EditProfilePage from '../pages/Profile/EditProfilePage'
 import ProfilePage from '../pages/Profile/ProfilePage'
 import RegisterAdressPage from '../pages/RegisterAdress/RegisterAdressPage'
 import ResultPage from '../pages/Result/ResultPage'
@@ -20,6 +21,7 @@ export const Router = () => {
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/cadastro" element={<SignUpPage/>}/>
         <Route path="/perfil" element={<ProfilePage/>}/>
+        <Route path="/perfil/editar-perfil" element={<EditProfilePage/>}/>
         <Route path="/perfil/editar-endereco" element={<EditAdressPage/>}/>
         <Route path="/registrar-endereco" element={<RegisterAdressPage/>}/>
         <Route path="/resultado" element={<ResultPage/>}/>
