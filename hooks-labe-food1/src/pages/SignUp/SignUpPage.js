@@ -63,6 +63,5 @@ const SignUpPage = () => {
       </form>
     </StyledDiv>
   );
-};
-
+}
 export default SignUpPage;
