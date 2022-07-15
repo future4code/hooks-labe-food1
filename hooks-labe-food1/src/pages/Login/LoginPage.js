@@ -81,11 +81,9 @@ const handleMouseDownPassword = (event) => {
             }
             />
           </DivInput>
-          {/* <DivButton> */}
             <StyledButton color="primary" variant="contained">
               Entrar
             </StyledButton>
-          {/* </DivButton> */}
         </StyledDivInput>
       </form>
       <DivH1>

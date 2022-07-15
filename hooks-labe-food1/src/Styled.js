@@ -46,7 +46,6 @@ height: 42px;
 padding: 12px 16px;
 border-radius: 2px;
 margin: 8px 16px 16px;
-
 `;
 
 
@@ -62,5 +61,4 @@ width: 360px;
 height: 42px;
 margin: 16px 0 0;
 padding: 12px 32px;
-
 `
