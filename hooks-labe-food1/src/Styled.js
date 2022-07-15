@@ -16,8 +16,6 @@ margin: 0 auto;
 border: 1px solid black;
 justify-content: flex-start;
 align-items:center;
-
-
 `
 export const DivInput = styled.div`
     width: 360px;
