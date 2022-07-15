@@ -1,8 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { DivHeader, StyledButtonHeader } from './StyledHeader';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-const Header = () => {
+const Header = (props) => {
   return (
-    <div>Header</div>
+    <DivHeader>
+      <StyledButtonHeader aria-label="delete">
+        <ArrowBackIosIcon />
+      </StyledButtonHeader>
+      <h1>{props.name}</h1>
+    </DivHeader>
   )
 }
 
