@@ -8,7 +8,7 @@ const RegisterAdressPage = () => {
 
   return (
     <StyledDiv>
-      <Header/>
+      <Header name="Teste" />
       <DivH1>
         <h1>Entrar</h1>
       </DivH1>
