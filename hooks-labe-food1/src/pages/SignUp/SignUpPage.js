@@ -119,11 +119,9 @@ const SignUp = () => {
               }
             />
           </DivInput>
-          {/* <DivButton> */}
           <StyledButton color="primary" variant="contained">
             Criar
           </StyledButton>
-          {/* </DivButton> */}
         </StyledDivInput>
       </form>
     </StyledDiv>

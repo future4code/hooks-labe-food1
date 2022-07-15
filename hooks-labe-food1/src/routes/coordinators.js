@@ -10,6 +10,9 @@ export const goToSignUp = (navigate ) => {
 export const goToPerfil = (navigate ) => {
   navigate ("/perfil");
 }
+export const goToEditProfile = (navigate ) => {
+  navigate ("/perfil/editar-perfil");
+}
 export const goToEditAdress = (navigate ) => {
   navigate ("/perfil/editar-endereco");
 }
