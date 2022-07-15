@@ -14,11 +14,12 @@ import {
   StyledInput,
   DivInput,
   DivButton,
-  StyledInputsenha
+  StyledInputsenha,
+  DivH1
 } from "../../Styled";
 import { LogoSvg } from "../../Styled";
 import logo from "../../assets/logo-future-eats-invert.svg";
-import { DivH1 } from "./StyledLoginPage";
+
 
 const LoginPage = () => {
   const [values, setValues] = useState({
