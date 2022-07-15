@@ -1,67 +1,133 @@
-import { TextField, Button } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router";
-import { StyledDivInput, StyledDiv, ButtonLindo } from "../../Styled";
+import { useState } from "react";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { goToSignUp } from "../../routes/coordinators";
+import {
+  StyledDivInput,
+  StyledDiv,
+  StyledButton,
+  StyledInput,
+  DivInput,
+  DivButton,
+  StyledInputsenha,
+} from "../../Styled";
 import { LogoSvg } from "../../Styled";
 import logo from "../../assets/logo-future-eats-invert.svg";
+import { DivH1 } from "./StyledSignUpPage";
 
-const SignUpPage = () => {
+const SignUp = () => {
+  const [values, setValues] = useState({
+    amount: "",
+    password: "",
+    weight: "",
+    weightRange: "",
+    showPassword: false,
+  });
   const navigate = useNavigate();
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   return (
     <StyledDiv>
       <LogoSvg src={logo} />
+      <DivH1>
+        <h1>Entrar</h1>
+      </DivH1>
       <form>
         <StyledDivInput>
-          <TextField
-            variant="outlined"
-            placeholder="Nome"
-            required
-            sx={{
-              "& > :not(style)": { m: 1, width: "328px", height: "56px" },
-            }}
-          />
-          <TextField
-            variant="outlined"
-            placeholder="E-mail"
-            size="small"
-            required
-            sx={{
-              "& > :not(style)": { m: 1, width: "328px", height: "56px" },
-            }}
-          />
-
-          <TextField
-            variant="outlined"
-            placeholder="CPF"
-            required
-            sx={{
-              "& > :not(style)": { m: 1, width: "328px", height: "56px" },
-            }}
-            inputProps={{pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"}}
-          />
-          <TextField
-            variant="outlined"
-            placeholder="Senha"
-            required
-            sx={{
-              "& > :not(style)": { m: 1, width: "328px", height: "56px" },
-            }}
-          />
-          <TextField
-            variant="outlined"
-            placeholder="Confirmar"
-            required
-            sx={{
-              "& > :not(style)": { m: 1, width: "328px", height: "56px" },
-            }}
-          />
-          <Button color="primary" variant="contained">
+          <DivInput>
+            <StyledInput
+              label={"Nome"}
+              variant="outlined"
+              placeholder="Nome e Sobrenom"
+              required
+            />
+          </DivInput>
+          <DivInput>
+            <StyledInput
+              label={"E-mail"}
+              variant="outlined"
+              placeholder="email@email.com"
+              required
+            />
+          </DivInput>
+          <DivInput>
+            <StyledInput
+              label={"CPF"}
+              variant="outlined"
+              placeholder="000.000.000-00"
+              required
+            />
+          </DivInput>
+          <DivInput>
+            <StyledInputsenha
+              label={"senha"}
+              variant="outlined"
+              placeholder="Mínimo 6 caracteres"
+              pattern={"^.{6,}"}
+              title={"A senha deve ter no mínimo 6 caracteres"}
+              required
+              type={values.showPassword ? "text" : "password"}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </DivInput>
+          <DivInput>
+            <StyledInputsenha
+              label={"senha"}
+              variant="outlined"
+              placeholder="Mínimo 6 caracteres"
+              pattern={"^.{6,}"}
+              title={"A senha deve ter no mínimo 6 caracteres"}
+              required
+              type={values.showPassword ? "text" : "password"}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </DivInput>
+          {/* <DivButton> */}
+          <StyledButton color="primary" variant="contained">
             Criar
-          </Button>
+          </StyledButton>
+          {/* </DivButton> */}
         </StyledDivInput>
       </form>
     </StyledDiv>
   );
-}
-export default SignUpPage;
+};
+
+export default SignUp;
