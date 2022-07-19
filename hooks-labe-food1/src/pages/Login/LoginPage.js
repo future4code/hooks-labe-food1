@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useNavigate,} from "react-router";
 import { useState } from "react";
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -6,7 +7,9 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import useForm from "../../hooks/useForm";
 import { goToSignUp } from "../../routes/coordinators";
+import { BASE_URL } from "../../constants/BASE_URL.js";
 import {
   StyledDivInput,
   StyledDiv,
@@ -29,6 +32,9 @@ const LoginPage = () => {
     weightRange: '',
     showPassword: false,
 });
+
+  const [form, onChange, clear] = useForm({ email: "", password: "" })
+
   const navigate = useNavigate();
 
   const handleClickShowPassword = () => {
@@ -42,16 +48,31 @@ const handleMouseDownPassword = (event) => {
     event.preventDefault();
 };
 
+
+const onSubmitForm = (event) => {
+  event.preventDefault()
+
+  axios.post(`${BASE_URL}/login`, form)
+    .then(res => {
+      localStorage.setItem("token", res.data.token)
+      navigate('/feed')
+    })
+    .catch(err => console.log(err.message)) 
+};
+
   return (
     <StyledDiv>
       <LogoSvg src={logo} />
       <DivH1>
         <h1>Entrar</h1>
       </DivH1>
-      <form>
+      <form onSubmit={onSubmitForm}>
         <StyledDivInput>
           <DivInput>
             <StyledInput
+              value={form.email}
+              onChange={onChange}
+              name="email"
               label={"E-mail"}
               variant="outlined"
               placeholder="email@email.com"
@@ -60,6 +81,9 @@ const handleMouseDownPassword = (event) => {
           </DivInput>
           <DivInput>
             <StyledInputsenha
+              value={form.password}
+              onChange={onChange}
+              name="password"
               label={"senha"}
               variant="outlined"
               placeholder="Mínimo 6 caracteres"
@@ -81,7 +105,7 @@ const handleMouseDownPassword = (event) => {
             }
             />
           </DivInput>
-            <StyledButton color="primary" variant="contained">
+            <StyledButton color="primary" variant="contained" type={"submit"}>
               Entrar
             </StyledButton>
         </StyledDivInput>

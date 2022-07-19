@@ -4,6 +4,7 @@ import CartPage from '../pages/Cart/CartPage'
 import ErrorPage from '../pages/Error/ErrorPage'
 import Home from '../pages/Home/Home'
 import LoginPage from '../pages/Login/LoginPage'
+import FeedPage from '../pages/Feed/FeedPage'
 import EditAdressPage from '../pages/Profile/EditAdressPage'
 import EditProfilePage from '../pages/Profile/EditProfilePage'
 import ProfilePage from '../pages/Profile/ProfilePage'
@@ -19,6 +20,7 @@ export const Router = () => {
     <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/feed" element={<FeedPage/>}/>
         <Route path="/cadastro" element={<SignUpPage/>}/>
         <Route path="/perfil" element={<ProfilePage/>}/>
         <Route path="/perfil/editar-perfil" element={<EditProfilePage/>}/>
