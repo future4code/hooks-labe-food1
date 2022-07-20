@@ -6,7 +6,7 @@ export const DivHeader = styled.div`
     flex-direction: row;
     width: 360px;
     height: 64px;
-    margin: 0 auto;
+    margin: 0 auto 16px;
     border-bottom: 1px solid black;
     justify-content: space-around;
     align-items:center;
