@@ -30,6 +30,11 @@ h2 {
     color:#e86e5a;
 }
 
+h4{
+  color: #b8b8b8;
+  font-weight: normal;
+}
+
 `;
 
 export default GlobalStyle;
