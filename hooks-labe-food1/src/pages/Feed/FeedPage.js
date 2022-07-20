@@ -4,7 +4,8 @@ import GlobalStateContext from '../../global/GlobalStateContext'
 import { StyledDiv } from '../../Styled'
 
 const FeedPage = () => {
-  const {restaurantsList} = useContext(GlobalStateContext)
+  const restaurantsList = useContext(GlobalStateContext)
+  console.log(restaurantsList)
   
 
   return (

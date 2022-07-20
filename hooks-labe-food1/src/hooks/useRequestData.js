@@ -11,7 +11,7 @@ const useRequestData = (initialData, url) => {
       }
     })
       .then((response) => {
-        setData(response.data)
+        setData(response)
       })
       .catch((error) => {
         console.log(error)
@@ -19,7 +19,7 @@ const useRequestData = (initialData, url) => {
       })
   }, [url])
 
-  return (data)
+  return data
 }
 
 export default useRequestData

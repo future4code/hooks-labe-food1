@@ -4,7 +4,7 @@ import useRequestData from '../hooks/useRequestData'
 import GlobalStateContext from './GlobalStateContext'
 
 const GlobalState = (props) => {
-    const [restaurantsList, setRestaurantsList] = useRequestData ([], BASE_URL)
+    const [restaurantsList, setRestaurantsList] = useRequestData ([],`${BASE_URL}/restaurants`)
 
   return (
     <GlobalStateContext.Provider value={restaurantsList}  >
