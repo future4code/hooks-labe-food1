@@ -11,15 +11,16 @@ const useRequestData = (initialData, url) => {
       }
     })
       .then((response) => {
-        setData(response.data)
+        setData(response)
+        console.log(response)
       })
       .catch((error) => {
         console.log(error)
         alert('Ocorreu um erro, tente novamente')
       })
-  }, [url])
+  }, [])
 
-  return (data)
+  return data
 }
 
 export default useRequestData
