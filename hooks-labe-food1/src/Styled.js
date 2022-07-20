@@ -18,7 +18,7 @@ justify-content: flex-start;
 align-items:center;
 `
 export const DivInput = styled.div`
-    width: 360px;
+  width: 360px;
   height: 72px;
   padding: 0 16px 8px;
 `
@@ -59,6 +59,5 @@ export const LogoSvg= styled.img`
 export const DivH1 = styled.div`
 width: 360px;
 height: 42px;
-margin: 16px 0 0;
 padding: 12px 32px;
 `

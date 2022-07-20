@@ -13,7 +13,8 @@ const GlobalStyle = createGlobalStyle`
     letter-spacing: -0.39px;  
     box-sizing: border-box;
   }
-  h3 {
+
+h3 {
     font-weight: bold;
     color: #000;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "../../components/Header/Header";
 import {
   StyledButton,
   StyledDiv,
@@ -10,6 +11,7 @@ import {
 const EditProfilePage = () => {
   return (
     <StyledDiv>
+      <Header name='Editar' />
       <form>
         <StyledDivInput>
           <DivInput>
