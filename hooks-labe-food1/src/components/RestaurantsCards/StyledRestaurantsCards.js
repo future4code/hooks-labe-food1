@@ -28,5 +28,4 @@ export const TextDiv = styled.div`
    justify-content: space-between;
    padding: 0 16px;
    margin: 4px 0 0 0px;
-   border: 1px solid red;
 `;
