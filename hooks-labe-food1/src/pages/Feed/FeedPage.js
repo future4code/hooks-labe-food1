@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import RestaurantsCards from '../../components/RestaurantsCards/RestaurantsCards'
+import GlobalStateContext from '../../global/GlobalStateContext'
+import { StyledDiv } from '../../Styled'
 
 const FeedPage = () => {
+  const {restaurantsList} = useContext(GlobalStateContext)
+  
+
   return (
-    <div>FeedPage</div>
+    <StyledDiv>
+      <RestaurantsCards/>
+    </StyledDiv>
   )
 }
 
