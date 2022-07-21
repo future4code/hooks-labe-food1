@@ -27,7 +27,7 @@ h1 {
 
 h2 {
     font-weight: normal;
-    color:#e86e5a;
+    color: #e86e5a;
 }
 
 h4{

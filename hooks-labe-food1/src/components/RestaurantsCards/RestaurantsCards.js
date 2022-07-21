@@ -1,14 +1,15 @@
 import React from "react";
 import { ContainerDiv, TextDiv } from "./StyledRestaurantsCards";
 
-const RestaurantsCards = () => {
+const RestaurantsCards = ({restaurant}) => {
+
   return (
     <ContainerDiv>
-      <img />
-      <h2>Vinil</h2>
+      <img src={restaurant.logoUrl} />
+      <h2>{restaurant.name}</h2>
       <TextDiv>
-        <h4>50</h4>
-        <h4>Frete</h4>
+        <h4>{restaurant.deliveryTime}min</h4>
+        <h4>Frete R${restaurant.shipping},00</h4>
       </TextDiv>
     </ContainerDiv>
   );
