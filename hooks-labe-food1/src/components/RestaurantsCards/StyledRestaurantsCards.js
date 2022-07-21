@@ -4,6 +4,7 @@ export const ContainerDiv = styled.div`
   width: 328px;
   height: 188px;
   padding: 0 0 16px;
+  margin-top: 8px;
   border-radius: 8px;
   border: solid 1px #b8b8b8;
 
@@ -11,7 +12,7 @@ export const ContainerDiv = styled.div`
     width: 328px;
     height: 120px;
     margin: 0 0 12px;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 8px 8px 0 0;
   }
   h2 {
