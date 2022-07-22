@@ -9,16 +9,16 @@ export const ContainerDiv = styled.div`
   border: solid 1px #b8b8b8;
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  justify-items: start;
+  justify-content: center;
+  align-items: flex-start;
+  /* justify-items: start; */
 
   h1 {
     font-size: 12px;
-    padding-right: 208px;
     padding-top: 9px;
     padding-bottom: 7px;
   }
   h3 {
-    padding-bottom: 16px;
+    /* padding-bottom: 16px; */
   }
 `;

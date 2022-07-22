@@ -8,7 +8,7 @@ export const DivHeader = styled.div`
   height: 64px;
   margin: 0 auto 16px;
   border-bottom: 1px solid black;
-  justify-content: space-around;
+  justify-content:space-between;
   align-items: center;
   /* position: relative; */
   /* h1{

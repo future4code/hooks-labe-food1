@@ -9,7 +9,7 @@ const EditAdressPage = () => {
 
   return (
     <StyledDiv>
-      <Header name='Endereço' />
+      <Header showButton={true} name='Endereço' />
       <form>
         <StyledDivInput>
           <DivInput>

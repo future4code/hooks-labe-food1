@@ -11,7 +11,7 @@ import {
 const EditProfilePage = () => {
   return (
     <StyledDiv>
-      <Header name='Editar' />
+      <Header showButton={true} name='Editar' />
       <form>
         <StyledDivInput>
           <DivInput>

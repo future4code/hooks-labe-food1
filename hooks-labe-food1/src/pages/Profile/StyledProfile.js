@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Text = styled.h1`
   margin: 16px 16px 8px;
-  padding-right: 201px;
+  padding-right: 185px;
 `;
 export const Line = styled.hr`
   width: 328px;

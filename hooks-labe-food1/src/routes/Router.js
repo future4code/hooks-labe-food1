@@ -28,7 +28,7 @@ export const Router = () => {
         <Route path="/perfil/editar-endereco" element={<EditAdressPage />} /> {/*Giovana */}
         <Route path="/registrar-endereco" element={<RegisterAdressPage />} /> {/*Giovana */}
         <Route path="/restaurant/:restaurantId" element={<RestaurantPage />} /> {/* Ana Lívia */}
-        <Route path="/busca" element={<SearchPage />} /> 
+        <Route path="/busca" element={<SearchPage />} /> {/* Giulia*/}
         <Route path="/carrinho" element={<CartPage />} /> {/* Prox semana */}
         <Route path="*" element={<ErrorPage />} /> 
       </Routes>

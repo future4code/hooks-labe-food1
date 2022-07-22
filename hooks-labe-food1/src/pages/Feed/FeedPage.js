@@ -50,7 +50,7 @@ console.log(data)
 
   return (
     <StyledDiv>
-      <Header name='Rappi4' />
+      <Header showButton={false} name='Rappi4' />
       <DivInput>
         <StyledInput
           name="Busca"
