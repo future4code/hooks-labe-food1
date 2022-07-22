@@ -5,15 +5,17 @@ import GlobalStateContext from '../../global/GlobalStateContext'
 import { StyledInput, DivInput, StyledDiv, DivOverflow } from '../../Styled'
 import { useProtectedPage } from '../../hooks/useProtectedPage'
 import { DivCategory } from './StyledFeed'
+import { BASE_URL } from '../../constants/BASE_URL'
+import useRequestData from '../../hooks/useRequestData'
 
 const FeedPage = () => {
-  const restaurantsList = useContext(GlobalStateContext)
+  const [restaurantsList] = useRequestData([], `${BASE_URL}/restaurants`)
+  // const restaurantsList = useContext(GlobalStateContext)
   const categoryList = []
   const [categorySelected, setCategorySelected] = useState('')
   const [isSelected, setIsSelected] = useState(false)
 
   useProtectedPage()
-
 
   const renderRestaurants = restaurantsList.data?.restaurants.map(item => {
     return <RestaurantsCards key={item.id} restaurant={item} />
@@ -37,8 +39,14 @@ const FeedPage = () => {
   })
 
 const selectCategory = (category) => {
-  setCategorySelected(category)
-  setIsSelected(!isSelected)
+  if(categorySelected !== null){
+    setCategorySelected(category)
+    setIsSelected(true)
+  } else{
+    setCategorySelected(category)
+    setIsSelected(false)
+  }
+
 }
 
 console.log('LISTA', categoryList)

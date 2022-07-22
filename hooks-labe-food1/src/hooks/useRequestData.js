@@ -20,7 +20,7 @@ const useRequestData = (initialData, url) => {
       })
   }, [])
 
-  return data
+  return [data, setData]
 }
 
 export default useRequestData
