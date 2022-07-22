@@ -7,6 +7,7 @@ import { useProtectedPage } from '../../hooks/useProtectedPage'
 import { DivCategory } from './StyledFeed'
 import { BASE_URL } from '../../constants/BASE_URL'
 import useRequestData from '../../hooks/useRequestData'
+import Footer from '../../components/Footer/Footer'
 
 const FeedPage = () => {
   const [restaurantsList] = useRequestData([], `${BASE_URL}/restaurants`)
@@ -57,7 +58,7 @@ console.log('LISTA', categoryList)
       <DivInput>
         <StyledInput
           name="Busca"
-          label={"Busca"}
+          // label={"Busca"}
           variant="outlined"
           placeholder="Restaurante"
           required
@@ -73,6 +74,7 @@ console.log('LISTA', categoryList)
       <DivOverflow>
         {!categorySelected ? <>{renderRestaurants}</> : <>{renderRestaurantsCategory}</>}
       </DivOverflow>
+      <Footer/>
 
     </StyledDiv>
   )
