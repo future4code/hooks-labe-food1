@@ -19,8 +19,8 @@ export const goToEditProfile = (navigate) => {
 export const goToEditAdress = (navigate) => {
   navigate ("/perfil/editar-endereco");
 }
-export const goToRestaurant = (navigate, id) => {
-  navigate (`/restaurant/${id}`);
+export const goToRestaurant = (navigate, restaurantId) => {
+  navigate (`/restaurant/${restaurantId}`);
 }
 export const goToSearch = (navigate) => {
   navigate ("/busca");

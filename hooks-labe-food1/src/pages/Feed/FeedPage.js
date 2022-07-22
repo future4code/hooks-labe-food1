@@ -7,49 +7,44 @@ import { useProtectedPage } from '../../hooks/useProtectedPage'
 import { DivCategory } from './StyledFeed'
 import { BASE_URL } from '../../constants/BASE_URL'
 import useRequestData from '../../hooks/useRequestData'
+import { useNavigate } from 'react-router-dom'
+import ClipLoader from 'react-spinners/ClipLoader'
 
 const FeedPage = () => {
-  const [restaurantsList] = useRequestData([], `${BASE_URL}/restaurants`)
-  // const restaurantsList = useContext(GlobalStateContext)
+  const {data, isLoading} = useRequestData([], `${BASE_URL}/restaurants`)
+  const {restaurants} = data
   const categoryList = []
-  const [categorySelected, setCategorySelected] = useState('')
+  const { categorySelected, setCategorySelected } = useContext(GlobalStateContext)
   const [isSelected, setIsSelected] = useState(false)
-
+console.log(data)
   useProtectedPage()
 
-  const renderRestaurants = restaurantsList.data?.restaurants.map(item => {
+  const renderRestaurants = restaurants?.map(item => {
     return <RestaurantsCards key={item.id} restaurant={item} />
   })
 
-  const renderRestaurantsCategory = restaurantsList.data?.restaurants.map(item => {
-    if(item.category === categorySelected){
+  const renderRestaurantsCategory = restaurants?.map(item => {
+    if (item.category === categorySelected) {
       return <RestaurantsCards key={item.id} restaurant={item} />
     }
   })
 
-  const teste = restaurantsList.data?.restaurants.filter(item => {
+  const createCategoryList = restaurants?.filter(item => {
     const categoryFind = categoryList?.find(category => {
-      if(item.category === category){
+      if (item.category === category) {
         return true
       }
-      })
-    if(!categoryFind) {
-      categoryList.push(item.category)
-    }
+    })
+  if (!categoryFind) {
+     categoryList.push(item.category)
+  }
   })
 
-const selectCategory = (category) => {
-  if(categorySelected !== null){
+  const selectCategory = (category) => {
     setCategorySelected(category)
-    setIsSelected(true)
-  } else{
-    setCategorySelected(category)
-    setIsSelected(false)
+    setIsSelected(!isSelected)
   }
 
-}
-
-console.log('LISTA', categoryList)
 
   return (
     <StyledDiv>
@@ -63,7 +58,8 @@ console.log('LISTA', categoryList)
           required
         />
       </DivInput>
-      <DivCategory isSelected={isSelected}>
+      <DivCategory>
+        {!categorySelected ? <></> : <button onClick={() => selectCategory("")} >Todos</button>}
         {
           categoryList.map((item, index) => {
             return <button key={index} onClick={() => selectCategory(item)} >{item}</button>
@@ -71,9 +67,9 @@ console.log('LISTA', categoryList)
         }
       </DivCategory>
       <DivOverflow>
+        {isLoading && <ClipLoader color={'#e86e5a'} isLoading={isLoading} size={150} />}
         {!categorySelected ? <>{renderRestaurants}</> : <>{renderRestaurantsCategory}</>}
       </DivOverflow>
-
     </StyledDiv>
   )
 }

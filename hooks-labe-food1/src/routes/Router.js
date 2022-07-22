@@ -9,7 +9,7 @@ import EditAdressPage from '../pages/Profile/EditAdressPage'
 import EditProfilePage from '../pages/Profile/EditProfilePage'
 import ProfilePage from '../pages/Profile/ProfilePage'
 import RegisterAdressPage from '../pages/RegisterAdress/RegisterAdressPage'
-import RestaurantPage from '../pages/Result/RestaurantPage'
+import RestaurantPage from '../pages/Restaurant/RestaurantPage'
 import SearchPage from '../pages/Search/SearchPage'
 import SignUpPage from '../pages/SignUp/SignUpPage'
 
@@ -27,7 +27,7 @@ export const Router = () => {
         <Route path="/perfil/editar-perfil" element={<EditProfilePage />} /> {/*Giovana */}
         <Route path="/perfil/editar-endereco" element={<EditAdressPage />} /> {/*Giovana */}
         <Route path="/registrar-endereco" element={<RegisterAdressPage />} /> {/*Giovana */}
-        <Route path="/restaurant/:id" element={<RestaurantPage />} /> {/* Ana Lívia */}
+        <Route path="/restaurant/:restaurantId" element={<RestaurantPage />} /> {/* Ana Lívia */}
         <Route path="/busca" element={<SearchPage />} /> 
         <Route path="/carrinho" element={<CartPage />} /> {/* Prox semana */}
         <Route path="*" element={<ErrorPage />} /> 

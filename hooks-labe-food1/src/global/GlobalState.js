@@ -5,12 +5,12 @@ import useRequestData from '../hooks/useRequestData'
 import GlobalStateContext from './GlobalStateContext'
 
 const GlobalState = (props) => {
-  //o return do userequestdata só retorna um estado
- 
+  const [categorySelected, setCategorySelected] = useState('')
 
 
   return (
-    <GlobalStateContext.Provider  >
+    <GlobalStateContext.Provider 
+    value={{categorySelected, setCategorySelected}}  >
       {props.children}
     </GlobalStateContext.Provider>
   )
