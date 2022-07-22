@@ -1,22 +1,23 @@
 import styled from "styled-components"
 import { TextField, Button, OutlinedInput} from "@mui/material";
 
-export const StyledDivInput = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-`
 export const StyledDiv = styled.div`
 display: flex;
 flex-direction: column;
 width: 360px;
 height: 640px;
+overflow: hidden;
 margin: 0 auto;
 border: 1px solid black;
 justify-content: flex-start;
 align-items:center;
 position: relative;
+`
+export const StyledDivInput = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 `
 
 export const DivOverflow = styled.div` 

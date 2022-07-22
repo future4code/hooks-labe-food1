@@ -3,7 +3,6 @@ import styled from "styled-components"
 export const DivCategory = styled.div`
     width: 100%;
     height: 42px;
-    margin: 8px 0 0 8px;
     padding: 12px 0 12px 16px;
     display: flex;
     flex-direction: row;
@@ -11,8 +10,6 @@ export const DivCategory = styled.div`
     align-items: center;
     overflow-x: scroll;
     overflow-y: hidden;
-
-    
 
     button{
         margin: 0 8px;
