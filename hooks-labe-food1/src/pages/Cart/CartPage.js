@@ -1,8 +1,12 @@
 import React from 'react'
+import Footer from '../../components/Footer/Footer'
+import { StyledDiv } from '../../Styled'
 
 const CartPage = () => {
   return (
-    <div>CartPage</div>
+    <StyledDiv>
+      <Footer/>
+    </StyledDiv>
   )
 }
 

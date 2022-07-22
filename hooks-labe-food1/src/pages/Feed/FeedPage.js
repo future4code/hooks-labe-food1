@@ -9,6 +9,8 @@ import { BASE_URL } from '../../constants/BASE_URL'
 import useRequestData from '../../hooks/useRequestData'
 import { useNavigate } from 'react-router-dom'
 import ClipLoader from 'react-spinners/ClipLoader'
+import Footer from '../../components/Footer/Footer'
+
 
 const FeedPage = () => {
   const {data, isLoading} = useRequestData([], `${BASE_URL}/restaurants`)
@@ -52,7 +54,7 @@ console.log(data)
       <DivInput>
         <StyledInput
           name="Busca"
-          label={"Busca"}
+          // label={"Busca"}
           variant="outlined"
           placeholder="Restaurante"
           required
@@ -70,6 +72,7 @@ console.log(data)
         {isLoading && <ClipLoader color={'#e86e5a'} isLoading={isLoading} size={150} />}
         {!categorySelected ? <>{renderRestaurants}</> : <>{renderRestaurantsCategory}</>}
       </DivOverflow>
+      <Footer/>
     </StyledDiv>
   )
 }
