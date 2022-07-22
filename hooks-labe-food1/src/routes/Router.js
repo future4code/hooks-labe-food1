@@ -9,28 +9,29 @@ import EditAdressPage from '../pages/Profile/EditAdressPage'
 import EditProfilePage from '../pages/Profile/EditProfilePage'
 import ProfilePage from '../pages/Profile/ProfilePage'
 import RegisterAdressPage from '../pages/RegisterAdress/RegisterAdressPage'
-import ResultPage from '../pages/Result/ResultPage'
+import RestaurantPage from '../pages/Result/RestaurantPage'
 import SearchPage from '../pages/Search/SearchPage'
 import SignUpPage from '../pages/SignUp/SignUpPage'
 
 
 export const Router = () => {
+
   return (
     <BrowserRouter>
-    <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/login" element={<LoginPage/>}/>
-        <Route path="/feed" element={<FeedPage/>}/>
-        <Route path="/cadastro" element={<SignUpPage/>}/>
-        <Route path="/perfil" element={<ProfilePage/>}/>
-        <Route path="/perfil/editar-perfil" element={<EditProfilePage/>}/>
-        <Route path="/perfil/editar-endereco" element={<EditAdressPage/>}/>
-        <Route path="/registrar-endereco" element={<RegisterAdressPage/>}/>
-        <Route path="/resultado" element={<ResultPage/>}/>
-        <Route path="/busca" element={<SearchPage/>}/>
-        <Route path="/carrinho" element={<CartPage/>}/>
-        <Route path="*" element={<ErrorPage/>}/>
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Home />} /> {/* OK */}
+        <Route path="/login" element={<LoginPage />} /> {/* OK */}
+        <Route path="/feed" element={<FeedPage />} /> {/* OK */}
+        <Route path="/cadastro" element={<SignUpPage />} /> {/* Adriana */}
+        <Route path="/perfil" element={<ProfilePage />} /> {/* Adriana */}
+        <Route path="/perfil/editar-perfil" element={<EditProfilePage />} /> {/*Giovana */}
+        <Route path="/perfil/editar-endereco" element={<EditAdressPage />} /> {/*Giovana */}
+        <Route path="/registrar-endereco" element={<RegisterAdressPage />} /> {/*Giovana */}
+        <Route path="/restaurant/:id" element={<RestaurantPage />} /> {/* Ana Lívia */}
+        <Route path="/busca" element={<SearchPage />} /> 
+        <Route path="/carrinho" element={<CartPage />} /> {/* Prox semana */}
+        <Route path="*" element={<ErrorPage />} /> 
+      </Routes>
     </BrowserRouter>
   )
 }

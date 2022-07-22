@@ -8,7 +8,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import useForm from "../../hooks/useForm";
-import { goToSignUp } from "../../routes/coordinators";
+import { goToFeed, goToSignUp } from "../../routes/coordinators";
 import { BASE_URL } from "../../constants/BASE_URL.js";
 import {
   StyledDivInput,
@@ -34,8 +34,7 @@ const LoginPage = () => {
 });
 
   const [form, onChange, clear] = useForm({ email: "", password: "" })
-
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleClickShowPassword = () => {
     setValues({
@@ -51,11 +50,10 @@ const handleMouseDownPassword = (event) => {
 
 const onSubmitForm = (event) => {
   event.preventDefault()
-
   axios.post(`${BASE_URL}/login`, form)
     .then(res => {
       localStorage.setItem("token", res.data.token)
-      navigate('/feed')
+      goToFeed(navigate)
     })
     .catch(err => console.log(err.message)) 
 };
