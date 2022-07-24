@@ -10,6 +10,8 @@ import useRequestData from '../../hooks/useRequestData'
 import { useNavigate } from 'react-router-dom'
 import ClipLoader from 'react-spinners/ClipLoader'
 import Footer from '../../components/Footer/Footer'
+import SearchBar from '../../components/SearchBar/SearchBar'
+import Filter from '../../components/SearchBar/Filter'
 
 
 const FeedPage = () => {
@@ -18,6 +20,8 @@ const FeedPage = () => {
   const categoryList = []
   const { categorySelected, setCategorySelected } = useContext(GlobalStateContext)
   const [isSelected, setIsSelected] = useState(false)
+  const [filteredRestaurants, setFilteredRestaurants] = useState([])
+  const [categoryFilter, setCategoryFilter] = useState(undefined)
 console.log(data)
   useProtectedPage()
 
@@ -52,13 +56,14 @@ console.log(data)
     <StyledDiv>
       <Header name='Rappi4' />
       <DivInput>
-        <StyledInput
+        <SearchBar setSearch={setFilteredRestaurants} allRestaurants={restaurants} categoryFilter={setCategoryFilter}/>
+        {/* <StyledInput
           name="Busca"
           // label={"Busca"}
           variant="outlined"
           placeholder="Restaurante"
           required
-        />
+        /> */}
       </DivInput>
       <DivCategory>
         {!categorySelected ? <></> : <button onClick={() => selectCategory("")} >Todos</button>}
