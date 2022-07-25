@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { goToSignUp } from "../../routes/coordinators";
+import { goToRegisterAdressPage, goToSignUp } from "../../routes/coordinators";
 import {
   StyledDivInput,
   StyledDiv,
@@ -19,8 +19,18 @@ import {
 import { LogoSvg } from "../../Styled";
 import logo from "../../assets/logo-future-eats-invert.svg";
 import { DivH1 } from "./StyledSignUpPage";
+import useForm from "../../hooks/useForm";
+import { BASE_URL } from "../../constants/BASE_URL";
+import axios from "axios";
 
 const SignUp = () => {
+  const [confirm, setConfirm] = useState("");
+  const [form, onChange, clear] = useForm({
+    name: "",
+    email: "",
+    cpf: "",
+    password: "",
+  });
   const [values, setValues] = useState({
     amount: "",
     password: "",
@@ -40,26 +50,54 @@ const SignUp = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  const onChangeConfirm = (event) => {
+    setConfirm(event.target.value);
+  };
+
+  const onSubmitPostSignup = (event) => {
+    event.preventDefault();
+    if (form.password === confirm) {
+      axios
+        .post(`${BASE_URL}/signup`, form)
+        .then((res) => {
+          localStorage.setItem("token", res.data.token);
+          alert("Usuário criado com sucesso!");
+          goToRegisterAdressPage(navigate);
+        })
+        .catch((err) => {
+          console.log(err.message);
+          alert("CPF já cadastrato");
+        });
+    } else {
+      alert("Senhas não são iguais !");
+    }
+  };
 
   return (
     <StyledDiv>
       <LogoSvg src={logo} />
       <DivH1>
-        <h1>Entrar</h1>
+        <h1>Cadastrar</h1>
       </DivH1>
-      <form>
+      <form onSubmit={onSubmitPostSignup}>
         <StyledDivInput>
           <DivInput>
             <StyledInput
               label={"Nome"}
+              name="name"
+              value={form.name}
+              onChange={onChange}
               variant="outlined"
-              placeholder="Nome e Sobrenom"
+              placeholder="Nome e Sobrenome"
               required
             />
           </DivInput>
           <DivInput>
             <StyledInput
               label={"E-mail"}
+              name="email"
+              value={form.email}
+              onChange={onChange}
               variant="outlined"
               placeholder="email@email.com"
               required
@@ -68,6 +106,9 @@ const SignUp = () => {
           <DivInput>
             <StyledInput
               label={"CPF"}
+              name="cpf"
+              value={form.cpf}
+              onChange={onChange}
               variant="outlined"
               placeholder="000.000.000-00"
               required
@@ -76,6 +117,9 @@ const SignUp = () => {
           <DivInput>
             <StyledInputsenha
               label={"senha"}
+              name="password"
+              value={form.password}
+              onChange={onChange}
               variant="outlined"
               placeholder="Mínimo 6 caracteres"
               pattern={"^.{6,}"}
@@ -99,10 +143,13 @@ const SignUp = () => {
           <DivInput>
             <StyledInputsenha
               label={"senha"}
+              name="password"
+              value={confirm}
+              onChange={onChangeConfirm}
               variant="outlined"
-              placeholder="Mínimo 6 caracteres"
+              placeholder="Confirme a senha anterior"
               pattern={"^.{6,}"}
-              title={"A senha deve ter no mínimo 6 caracteres"}
+              // title={"Confirme a senha anterior"}
               required
               type={values.showPassword ? "text" : "password"}
               endAdornment={
@@ -119,7 +166,7 @@ const SignUp = () => {
               }
             />
           </DivInput>
-          <StyledButton color="primary" variant="contained">
+          <StyledButton type="submit" color="primary" variant="contained">
             Criar
           </StyledButton>
         </StyledDivInput>

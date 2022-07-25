@@ -10,6 +10,9 @@ export const goToFeed = (navigate) => {
 export const goToSignUp = (navigate) => {
   navigate ("/cadastro");
 }
+export const goToRegisterAdressPage = (navigate) => {
+  navigate ("/registrar-endereco");
+}
 export const goToPerfil = (navigate) => {
   navigate ("/perfil");
 }
