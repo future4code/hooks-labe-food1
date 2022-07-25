@@ -26,14 +26,10 @@ import logo from "../../assets/logo-future-eats-invert.svg";
 
 const LoginPage = () => {
   const [values, setValues] = useState({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
     showPassword: false,
 });
 
-  const [form, onChange, clear] = useForm({ email: "", password: "" })
+  const {form, handleInputChange, clear} = useForm({ email: "", password: "" })
   const navigate = useNavigate()
 
   const handleClickShowPassword = () => {
@@ -50,6 +46,7 @@ const handleMouseDownPassword = (event) => {
 
 const onSubmitForm = (event) => {
   event.preventDefault()
+  console.log(form)
   axios.post(`${BASE_URL}/login`, form)
     .then(res => {
       localStorage.setItem("token", res.data.token)
@@ -68,9 +65,9 @@ const onSubmitForm = (event) => {
         <StyledDivInput>
           <DivInput>
             <StyledInput
-              value={form.email}
-              onChange={onChange}
               name="email"
+              value={form.email}
+              onChange={handleInputChange}
               label={"E-mail"}
               variant="outlined"
               placeholder="email@email.com"
@@ -79,9 +76,9 @@ const onSubmitForm = (event) => {
           </DivInput>
           <DivInput>
             <StyledInputsenha
-              value={form.password}
-              onChange={onChange}
               name="password"
+              value={form.password}
+              onChange={handleInputChange}
               label={"senha"}
               variant="outlined"
               placeholder="Mínimo 6 caracteres"

@@ -25,17 +25,14 @@ import axios from "axios";
 
 const SignUp = () => {
   const [confirm, setConfirm] = useState("");
-  const [form, onChange, clear] = useForm({
+  const [formInput, handleInputChange] = useForm({
     name: "",
     email: "",
     cpf: "",
     password: "",
   });
+
   const [values, setValues] = useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
     showPassword: false,
   });
   const navigate = useNavigate();
@@ -56,9 +53,10 @@ const SignUp = () => {
 
   const onSubmitPostSignup = (event) => {
     event.preventDefault();
-    if (form.password === confirm) {
+    console.log(confirm)
+    if (formInput.password === confirm) {
       axios
-        .post(`${BASE_URL}/signup`, form)
+        .post(`${BASE_URL}/signup`, formInput)
         .then((res) => {
           localStorage.setItem("token", res.data.token);
           alert("Usuário criado com sucesso!");
@@ -85,8 +83,8 @@ const SignUp = () => {
             <StyledInput
               label={"Nome"}
               name="name"
-              value={form.name}
-              onChange={onChange}
+              value={formInput.name}
+              onChange={handleInputChange}
               variant="outlined"
               placeholder="Nome e Sobrenome"
               required
@@ -96,8 +94,8 @@ const SignUp = () => {
             <StyledInput
               label={"E-mail"}
               name="email"
-              value={form.email}
-              onChange={onChange}
+              value={formInput.email}
+              onChange={handleInputChange}
               variant="outlined"
               placeholder="email@email.com"
               required
@@ -107,8 +105,8 @@ const SignUp = () => {
             <StyledInput
               label={"CPF"}
               name="cpf"
-              value={form.cpf}
-              onChange={onChange}
+              value={formInput.cpf}
+              onChange={handleInputChange}
               variant="outlined"
               placeholder="000.000.000-00"
               required
@@ -118,8 +116,8 @@ const SignUp = () => {
             <StyledInputsenha
               label={"senha"}
               name="password"
-              value={form.password}
-              onChange={onChange}
+              value={formInput.password}
+              onChange={handleInputChange}
               variant="outlined"
               placeholder="Mínimo 6 caracteres"
               pattern={"^.{6,}"}
@@ -143,7 +141,7 @@ const SignUp = () => {
           <DivInput>
             <StyledInputsenha
               label={"senha"}
-              name="password"
+              name="passwordcheck"
               value={confirm}
               onChange={onChangeConfirm}
               variant="outlined"
