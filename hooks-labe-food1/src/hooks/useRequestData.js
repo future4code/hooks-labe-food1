@@ -23,6 +23,7 @@ const useRequestData = (initialData, url) => {
   }, [])
 
   return {data, setData, isLoading}
+  
 }
 
 export default useRequestData
