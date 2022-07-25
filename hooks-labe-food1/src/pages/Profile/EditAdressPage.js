@@ -1,74 +1,154 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
 import Header from '../../components/Header/Header';
+import { BASE_URL } from '../../constants/BASE_URL';
+import useForm from '../../hooks/useForm';
+import { useProtectedPage } from '../../hooks/useProtectedPage';
+import useRequestData from '../../hooks/useRequestData';
 import {
-  DivH1, DivInput, StyledDiv,
-  StyledDivInput, StyledInput, StyledButton
-} from '../../Styled'
+	DivInput,
+	StyledDiv,
+	StyledDivInput,
+	StyledInput,
+	StyledButton,
+} from '../../Styled';
 
 const EditAdressPage = () => {
+  	useProtectedPage()
 
-  return (
-    <StyledDiv>
-      <Header name='Endereço' />
-      <form>
-        <StyledDivInput>
-          <DivInput>
-            <StyledInput
-              id="outlined-required"
-              label={"Logradouro"}
-              variant="outlined"
-              placeholder="Rua / Av"
-              required
-            />
-          </DivInput>
-          <DivInput>
-            <StyledInput
-              id="outlined-required"
-              label={"Número"}
-              variant="outlined"
-              placeholder="Número"
-              required
-            />
-          </DivInput>
-          <DivInput>
-            <StyledInput
-              label={"Complemento"}
-              variant="outlined"
-              placeholder="Apto. / Bloco"
-              required
-            />
-          </DivInput>
-          <DivInput>
-            <StyledInput
-              label={"Bairro"}
-              variant="outlined"
-              placeholder="Bairro"
-              required
-            />
-          </DivInput>
-          <DivInput>
-            <StyledInput
-              label={"Cidade"}
-              variant="outlined"
-              placeholder="Cidade"
-              required
-            />
-          </DivInput>
-          <DivInput>
-            <StyledInput
-              label={"Estado"}
-              variant="outlined"
-              placeholder="Estado"
-              required
-            />
-          </DivInput>
-          <StyledButton color="primary" variant="contained">
-            Salvar
-          </StyledButton>
-        </StyledDivInput>
-      </form>
-    </StyledDiv>
-  )
-}
+  	const currentAddress = useRequestData({}, `${BASE_URL}/profile/address`)
 
-export default EditAdressPage
+	const [form, setForm, handleInputChange] = useForm({
+		street: '',
+		number: '',
+		neighbourhood: '',
+		city: '',
+		state: '',
+		complement: '',
+	});
+
+  	// useEffect(()=>{
+	// 	if(currentAddress){
+	// 		setForm({
+	// 			street: currentAddress.data?.address?.street,
+	// 			number: currentAddress.data?.address?.number,
+	// 			neighbourhood: currentAddress.data?.address?.neighbourhood,
+	// 			city: currentAddress.data?.address?.city,
+	// 			state: currentAddress.data?.address?.state,
+	// 			complement: currentAddress.data?.address?.complement,
+	// 		})
+	// 	}
+  	// }, [currentAddress])
+
+	const onSubmitAddress = (event) => {
+		event.preventDefault();
+
+		const url = `${BASE_URL}/address`;
+
+		const headers = {
+			headers: {
+				auth: localStorage.getItem('token'),
+			},
+		};
+
+		axios
+			.put(url, form, headers)
+			.then((response) => {
+				localStorage.setItem('token', response.data.token);
+				alert('Endereço registrado.');
+			})
+			.catch((error) => {
+				alert(error.response);
+			});
+	};
+
+	return (
+		<StyledDiv>
+			<Header name="Endereço"/>
+
+			<form onSubmit={onSubmitAddress}>
+				<StyledDivInput>
+					<DivInput>
+						<StyledInput
+							id='outlined-required'
+							label={'Logradouro'}
+							variant='outlined'
+							placeholder='Rua / Av'
+							required
+							name='street'
+							value={form.street}
+							onChange={handleInputChange}
+							// defaultValue={currentAddress && currentAddress.data.address.street}
+						/>
+					</DivInput>
+
+					<DivInput>
+						<StyledInput
+							id='outlined-required'
+							label={'Número'}
+							variant='outlined'
+							placeholder='Número'
+							required
+							name='number'
+							value={form.number}
+							onChange={handleInputChange}
+						/>
+					</DivInput>
+
+					<DivInput>
+						<StyledInput
+							label={'Complemento'}
+							variant='outlined'
+							placeholder='Apto. / Bloco'
+							name='complement'
+							value={form.complement}
+							onChange={handleInputChange}
+						/>
+					</DivInput>
+
+					<DivInput>
+						<StyledInput
+							label={'Bairro'}
+							variant='outlined'
+							placeholder='Bairro'
+							required
+							name='neighbourhood'
+							value={form.neighbourhood}
+							onChange={handleInputChange}
+						/>
+					</DivInput>
+
+					<DivInput>
+						<StyledInput
+							label={'Cidade'}
+							variant='outlined'
+							placeholder='Cidade'
+							required
+							name='city'
+							value={form.city}
+							onChange={handleInputChange}
+						/>
+					</DivInput>
+
+					<DivInput>
+						<StyledInput
+							label={'Estado'}
+							variant='outlined'
+							placeholder='Estado'
+							required
+							name='state'
+							value={form.state}
+							onChange={handleInputChange}
+						/>
+					</DivInput>
+
+					<StyledButton color='primary' variant='contained' type={'submit'}>
+						Salvar
+					</StyledButton>
+				</StyledDivInput>
+			</form>
+		</StyledDiv>
+	);
+};
+
+export default EditAdressPage;
