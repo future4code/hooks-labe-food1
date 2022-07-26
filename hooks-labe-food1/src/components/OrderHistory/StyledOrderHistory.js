@@ -10,11 +10,10 @@ export const ContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
-  justify-items: start;
+  align-items: start;
 
   h1 {
     font-size: 12px;
-    padding-right: 208px;
     padding-top: 9px;
     padding-bottom: 7px;
   }

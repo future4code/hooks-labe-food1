@@ -2,28 +2,42 @@ import styled from "styled-components";
 
 export const Text = styled.h1`
   margin: 16px 16px 8px;
-  padding-right: 201px;
+  align-self:flex-start;
+  
 `;
-export const Line = styled.hr`
+export const Line = styled.div`
   width: 328px;
-  height: 1px;
   margin: 0 0 7px;
-  border: solid 1px #000;
+  border-top: solid 1px #000;
+  overflow-y: scroll;
+ 
+
+  ::-webkit-scrollbar {
+    display: none;
+    }
+
+/* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 `;
 
 export const ContainerText = styled.div`
   width: 328px;
-  margin: 0 16px 8px;
+  /* margin: 0 16px 8px; */
   display:flex;
-  flex-direction:column;
+  flex-direction:row;
+  justify-content: space-between;
   align-items: start;
-  h1{
-    margin-bottom:8px
-  }
+
 `;
 
 export const NameDiv = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  align-items:  start;
+  flex-direction:column;
+  justify-content: flex-start;
+  align-items: start;
+  
+  h1{
+    margin-bottom:8px
+  }
 `;

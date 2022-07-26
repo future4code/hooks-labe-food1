@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import RestaurantsCards from '../../components/RestaurantsCards/RestaurantsCards'
 import Header from '../../components/Header/Header'
 import GlobalStateContext from '../../global/GlobalStateContext'
-import { StyledInput, DivInput, StyledDiv, DivOverflow } from '../../Styled'
+import { StyledInput, DivInput, StyledDiv, DivOverflow, StyledBody } from '../../Styled'
 import { useProtectedPage } from '../../hooks/useProtectedPage'
 import { DivCategory } from './StyledFeed'
 import { BASE_URL } from '../../constants/BASE_URL'
@@ -51,6 +51,7 @@ console.log(data)
   return (
     <StyledDiv>
       <Header name='Rappi4' />
+      <StyledBody>
       <DivInput>
         <StyledInput
           name="Busca"
@@ -72,6 +73,8 @@ console.log(data)
         {isLoading && <ClipLoader color={'#e86e5a'} isLoading={isLoading} size={150} />}
         {!categorySelected ? <>{renderRestaurants}</> : <>{renderRestaurantsCategory}</>}
       </DivOverflow>
+
+      </StyledBody>
       <Footer/>
     </StyledDiv>
   )
