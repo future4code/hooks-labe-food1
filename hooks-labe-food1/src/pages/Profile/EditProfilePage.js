@@ -16,23 +16,23 @@ import {
 const EditProfilePage = () => {
 	useProtectedPage();
 
-	const currentProfileInfo = useRequestData({}, `${BASE_URL}/profile`);
+	const { data } = useRequestData({}, `${BASE_URL}/profile`);
 
-	const [form, setForm, handleInputChange] = useForm({
+	const { form, setForm, handleInputChange } = useForm({
 		name: '',
 		email: '',
 		cpf: '',
 	});
 
-	// useEffect(() => {
-	// 	if (currentProfileInfo) {
-	// 		setForm({
-	// 			name: currentProfileInfo.data?.user?.name,
-	// 			email: currentProfileInfo.data?.user?.email,
-	// 			cpf: currentProfileInfo.data?.user?.cpf,
-	// 		});
-	// 	}
-	// }, [currentProfileInfo]);
+	useEffect(() => {
+		if (data) {
+			setForm({
+				name: data.user?.name,
+				email: data.user?.email,
+				cpf: data.user?.cpf,
+			});
+		}
+	}, [data]);
 
 	const onSubmitProfileEdit = (event) => {
 		event.preventDefault();
@@ -48,7 +48,6 @@ const EditProfilePage = () => {
 		axios
 			.put(url, form, headers)
 			.then((response) => {
-				localStorage.setItem('token', response.data.token);
 				alert('Alterado com sucesso.');
 			})
 			.catch((error) => {
@@ -97,7 +96,11 @@ const EditProfilePage = () => {
 						/>
 					</DivInput>
 
-					<StyledButton color='primary' variant='contained' type='submit'>
+					<StyledButton
+						color='primary'
+						variant='contained'
+						type='submit'
+					>
 						Salvar
 					</StyledButton>
 				</StyledDivInput>

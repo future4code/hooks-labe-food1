@@ -13,7 +13,7 @@ import {
 } from '../../Styled';
 
 const RegisterAdressPage = () => {
-	const [form, handleInputChange, clear] = useForm({
+	const { form, handleInputChange, clear } = useForm({
 		street: '',
 		number: '',
 		neighbourhood: '',
@@ -128,7 +128,11 @@ const RegisterAdressPage = () => {
 						/>
 					</DivInput>
 
-					<StyledButton color='primary' variant='contained' type={'submit'}>
+					<StyledButton
+						color='primary'
+						variant='contained'
+						type={'submit'}
+					>
 						Salvar
 					</StyledButton>
 				</StyledDivInput>
