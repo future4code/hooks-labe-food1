@@ -11,7 +11,15 @@ margin: 0 auto;
 border: 1px solid black;
 justify-content: flex-start;
 align-items:center;
-position: relative;
+`
+export const StyledBody = styled.div`
+width: 100%;
+height: 527px;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items:center;
+
 `
 export const StyledDivInput = styled.div`
 display: flex;

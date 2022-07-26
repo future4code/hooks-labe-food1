@@ -1,11 +1,12 @@
-import { Box} from "@mui/material";
+import { Box } from "@mui/material";
 import styled from "styled-components";
 
-
 export const StyledPaper = styled(Box)`
-  bottom: 0;
+  /* left: 0; */
   width: 358px;
-  position: absolute;
- border-top:1px solid #b8b8b8;
-
+  height: 49px;
+  border-top: 1px solid #b8b8b8;
+  /* border:1px solid red; */
+  /* position: fixed; */
+  
 `;
