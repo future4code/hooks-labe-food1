@@ -14,11 +14,11 @@ import {
 } from '../../Styled';
 
 const EditAdressPage = () => {
-  	useProtectedPage()
+	useProtectedPage()
 
-  	const currentAddress = useRequestData({}, `${BASE_URL}/profile/address`)
+	const { data } = useRequestData({}, `${BASE_URL}/profile/address`)
 
-	const [form, setForm, handleInputChange] = useForm({
+	const { form, setForm, handleInputChange } = useForm({
 		street: '',
 		number: '',
 		neighbourhood: '',
@@ -27,18 +27,18 @@ const EditAdressPage = () => {
 		complement: '',
 	});
 
-  	// useEffect(()=>{
-	// 	if(currentAddress){
-	// 		setForm({
-	// 			street: currentAddress.data?.address?.street,
-	// 			number: currentAddress.data?.address?.number,
-	// 			neighbourhood: currentAddress.data?.address?.neighbourhood,
-	// 			city: currentAddress.data?.address?.city,
-	// 			state: currentAddress.data?.address?.state,
-	// 			complement: currentAddress.data?.address?.complement,
-	// 		})
-	// 	}
-  	// }, [currentAddress])
+	useEffect(() => {
+		if (data) {
+			setForm({
+				street: data.address?.street,
+				number: data.address?.number,
+				neighbourhood: data.address?.neighbourhood,
+				city: data.address?.city,
+				state: data.address?.state,
+				complement: data.address?.complement,
+			})
+		}
+	}, [data])
 
 	const onSubmitAddress = (event) => {
 		event.preventDefault();
@@ -64,7 +64,7 @@ const EditAdressPage = () => {
 
 	return (
 		<StyledDiv>
-			<Header name="Endereço"/>
+			<Header name="Endereço" />
 
 			<form onSubmit={onSubmitAddress}>
 				<StyledDivInput>
@@ -78,7 +78,6 @@ const EditAdressPage = () => {
 							name='street'
 							value={form.street}
 							onChange={handleInputChange}
-							// defaultValue={currentAddress && currentAddress.data.address.street}
 						/>
 					</DivInput>
 
