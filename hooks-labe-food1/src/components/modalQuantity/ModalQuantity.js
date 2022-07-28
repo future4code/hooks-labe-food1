@@ -10,6 +10,7 @@ const ModalQuantity = ({ open, handleClose, addProduct, id }) => {
   const { productQuantity, setProductQuantity, changeQuantity } =
     useContext(GlobalStateContext);
 
+
   useEffect(() => {
     changeQuantity("");
   }, [id]);
