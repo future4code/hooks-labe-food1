@@ -6,6 +6,7 @@ import {
   RadioGroup,
 } from "@mui/material";
 import React from "react";
+import { StyledButton } from "../../Styled";
 import { ContainerPayment } from "./StyledPayment";
 
 const Payment = () => {
@@ -25,6 +26,10 @@ const Payment = () => {
           />
         </RadioGroup>
       </FormControl>
+
+      <StyledButton color="primary" variant="contained" type={"submit"}>
+        Confirmar
+      </StyledButton>
     </ContainerPayment>
   );
 };

@@ -1,5 +1,6 @@
 import { Container } from "@mui/system";
 import React from "react";
+import ActiveOrder from "../../components/activeOrder/ActiveOrder";
 import CardAdress from "../../components/cardAdress/CardAdress";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
@@ -28,6 +29,7 @@ const CartPage = () => {
         </Line>
 
         <Payment />
+        <ActiveOrder/>
       </StyledBody>
       <Footer />
     </StyledDiv>
