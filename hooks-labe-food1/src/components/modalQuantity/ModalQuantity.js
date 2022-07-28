@@ -9,6 +9,7 @@ import GlobalStateContext from '../../global/GlobalStateContext';
 
 const ModalQuantity = ({ open, handleClose, addProduct }) => {
     const { productQuantity, setProductQuantity } = useContext(GlobalStateContext);
+    
     const handleChange = (event) => {
         setProductQuantity(event.target.value);
     };
