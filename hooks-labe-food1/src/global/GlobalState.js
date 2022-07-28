@@ -7,11 +7,12 @@ import GlobalStateContext from "./GlobalStateContext";
 
 const GlobalState = (props) => {
   const [categorySelected, setCategorySelected] = useState("");
+  const restaurantsList = useRequestData([], `${BASE_URL}/restaurants`);
 
 
   return (
     <GlobalStateContext.Provider
-      value={{ categorySelected, setCategorySelected }}
+      value={{ categorySelected, setCategorySelected, restaurantsList }}
     >
       {props.children}
     </GlobalStateContext.Provider>

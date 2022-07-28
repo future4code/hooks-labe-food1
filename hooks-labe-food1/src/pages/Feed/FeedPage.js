@@ -17,18 +17,16 @@ import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import Footer from "../../components/Footer/Footer";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import Filter from "../../components/SearchBar/Filter";
 
 const FeedPage = () => {
-  const { data, isLoading } = useRequestData([], `${BASE_URL}/restaurants`);
-  const { restaurants } = data;
-  const categoryList = [];
-  const { categorySelected, setCategorySelected } =
+  const { categorySelected, setCategorySelected, restaurantsList } =
     useContext(GlobalStateContext);
+  const { restaurants } = restaurantsList?.data;
+  const categoryList = [];
   const [isSelected, setIsSelected] = useState(false);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [categoryFilter, setCategoryFilter] = useState(undefined);
-  console.log(data);
+  
   useProtectedPage();
 
   const renderRestaurants = restaurants?.map((item) => {
@@ -83,8 +81,8 @@ const FeedPage = () => {
           })}
         </DivCategory>
         <DivOverflow>
-          {isLoading && (
-            <ClipLoader color={"#e86e5a"} isLoading={isLoading} size={150} />
+          {restaurantsList?.isLoading && (
+            <ClipLoader color={"#e86e5a"} isLoading={restaurantsList?.isLoading} size={150} />
           )}
           {!categorySelected ? (
             <>{renderRestaurants}</>

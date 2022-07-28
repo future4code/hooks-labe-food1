@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useContext, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { StyledBody, StyledDiv } from "../../Styled";
 import Header from "../../components/Header/Header";
@@ -6,17 +6,15 @@ import Footer from "../../components/Footer/Footer";
 import { Search } from "../../components/SearchBar/StyledSearch"
 import { InputAdornment } from "@mui/material";
 import { SearchOutlined } from "@mui/icons-material";
-import {goToSearch} from "../../routes/coordinators";
 import { useNavigate } from "react-router-dom";
-import {RestaurantsCards} from "../../components/RestaurantsCards/RestaurantsCards";
-import { BASE_URL } from "../../constants/BASE_URL";
 import { goToRestaurant } from "../../routes/coordinators";
 import { ContainerDiv, TextDiv } from "../../components/RestaurantsCards/StyledRestaurantsCards";
-import useRequestData from "../../hooks/useRequestData";
+import GlobalStateContext from "../../global/GlobalStateContext";
 
 function SearchPage() {
-  const { data, isLoading } = useRequestData([], `${BASE_URL}/restaurants`);
-  const { restaurants } = data;
+  const {restaurantsList } =
+    useContext(GlobalStateContext);
+  const { restaurants } = restaurantsList?.data;
   const [searchItem, setSearchItem] = useState("");
   const navigate = useNavigate()
   const handleChange = (e) => {
@@ -32,7 +30,7 @@ function SearchPage() {
       
     } else {
       return (filteredArray?.map((item)=> {
-        return <ContainerDiv onClick={() => goToRestaurant(navigate, item.id)} >
+        return <ContainerDiv key={item.id} onClick={() => goToRestaurant(navigate, item.id)} >
         <img src={item.logoUrl} />
         <h2>{item.name}</h2>
         <TextDiv>
