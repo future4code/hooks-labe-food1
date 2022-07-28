@@ -12,13 +12,15 @@ const GlobalState = (props) => {
     products: [],
     paymentMethod: ""
   })
-  const [productQuantity, setProductQuantity] = useState(0)
+  const [productQuantity, setProductQuantity] = useState()
 
-
+  const changeQuantity = (q) => {
+    setProductQuantity(q)
+  }
   return (
     <GlobalStateContext.Provider
       value={{ categorySelected, setCategorySelected, restaurantsList, 
-        cart, setCart, productQuantity, setProductQuantity }}
+        cart, setCart, productQuantity, setProductQuantity, changeQuantity }}
     >
       {props.children}
     </GlobalStateContext.Provider>
