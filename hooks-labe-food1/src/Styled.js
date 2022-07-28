@@ -65,7 +65,6 @@ export const StyledInputsenha = styled(OutlinedInput)`
   margin: 8px 0 0;
   padding: 19px 48px 19px 16px;
   border-radius: 2px;
- 
 `;
 
 export const StyledButton = styled(Button)`
