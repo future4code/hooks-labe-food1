@@ -9,6 +9,7 @@ import { StyledBody, StyledDiv } from "../../Styled";
 import { Line, ContainerPag, SubTotal } from "./StyledCar";
 
 const CartPage = () => {
+  
   return (
     <StyledDiv>
       <Header />
@@ -23,11 +24,9 @@ const CartPage = () => {
             </h2>
           </SubTotal>
         </ContainerPag>
-
         <Line>
           <h1>Forma de pagamento</h1>
         </Line>
-
         <Payment />
         <ActiveOrder/>
       </StyledBody>
