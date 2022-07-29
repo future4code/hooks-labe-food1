@@ -10,8 +10,15 @@ export const DivHeader = styled.div`
   min-height: 64px;
   margin: 0 auto 16px;
   /* padding: 16px; */
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   position: relative;
+  h1 {
+    /* width: 175px;
+    height: 44px; */
+    margin: 20px 92px 0 93px;
+    padding: 13px 63.5px 12px;
+    letter-spacing: -0.39px;
+  }
 `;
 
 export const StyledButtonHeader = styled(IconButton)`
@@ -24,7 +31,6 @@ export const StyledButtonHeader = styled(IconButton)`
     left: 0;
     bottom: 0; */
 `;
-
 
 export const ButtontDiv = styled.div`
   position: absolute;

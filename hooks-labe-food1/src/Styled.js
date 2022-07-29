@@ -8,7 +8,7 @@ width: 360px;
 height: 640px;
 overflow: hidden;
 margin: 0 auto;
-border: 1px solid black;
+border: 1px solid rgba(0, 0, 0, 0.25);
 justify-content: flex-start;
 align-items:center;
 `
