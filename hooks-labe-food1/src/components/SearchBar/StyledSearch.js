@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
 export const Search = styled.div `
-width:90vw;
-max-width:420px;
+ width: 328px;
+  height: 56px;
 `
