@@ -3,11 +3,12 @@ import { DivOverflow } from '../../Styled'
 import FoodCard from '../FoodsCards/FoodCard'
 import { DivCategory, DivContainer, DivRender } from './StyledRestaurantsCategory'
 
-const RestaurantsCategory = ({ name, products }) => {
+const RestaurantsCategory = ({ name, products, restaurantId }) => {
 
   const renderProductsByCategory = products.map(product => {
     if (product.category === name) {
-      return <FoodCard key={product.id} product={product} />
+      return <FoodCard key={product.id} product={product} 
+      restaurantId={restaurantId} />
     }
   })
 

@@ -28,11 +28,6 @@ const ModalQuantity = ({ open, handleClose, onClick, value, onChange }) => {
                             {Array(10).fill('').map((_,i) => (
                                 <MenuItem key={i} value={i+1}>{i+1}</MenuItem>
                             ))}
-                            {/* <MenuItem value={1}>1</MenuItem>
-                            <MenuItem value={2}>2</MenuItem>
-                            <MenuItem value={3}>3</MenuItem>
-                            <MenuItem value={4}>4</MenuItem>
-                            <MenuItem value={5}>5</MenuItem> */}
                         </Select>
                     </FormControl>
                     <ButtonCart onClick={onClick}>

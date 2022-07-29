@@ -47,7 +47,7 @@ const RegisterAdressPage = () => {
 
 	return (
 		<StyledDiv>
-			<Header />
+			<Header haveButton={true}/>
 
 			<DivH1>
 				<h1>Meu endereço</h1>

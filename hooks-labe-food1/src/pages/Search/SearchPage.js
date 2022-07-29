@@ -43,7 +43,7 @@ function SearchPage() {
   };
   return (
     <StyledDiv>
-    <Header name="Busca"/>
+    <Header name="Busca" haveButton={true}/>
     <StyledBody>
       <Search>
       <TextField

@@ -26,7 +26,7 @@ const ProfilePage = () => {
 
   return (
     <StyledDiv>
-      <Header />
+      <Header name='Meu Perfil' haveButton={false} />
       <StyledBody>
         <ContainerText>
           <NameDiv>

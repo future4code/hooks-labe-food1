@@ -14,7 +14,7 @@ align-items:center;
 `
 export const StyledBody = styled.div`
 width: 100%;
-height: 527px;
+height: 511px;
 display: flex;
 flex-direction: column;
 justify-content: flex-start;
