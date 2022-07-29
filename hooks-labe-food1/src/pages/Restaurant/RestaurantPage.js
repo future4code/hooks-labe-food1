@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Header from '../../components/Header/Header'
 import RestaurantHeaderDetail from '../../components/RestaurantHeaderDetail/RestaurantHeaderDetail'
@@ -7,13 +7,13 @@ import useRequestData from '../../hooks/useRequestData'
 import { DivOverflow, StyledDiv } from '../../Styled'
 import ClipLoader from 'react-spinners/ClipLoader'
 import RestaurantsCategory from '../../components/RestaurantsCategory/RestaurantsCategory'
+import GlobalStateContext from '../../global/GlobalStateContext'
 
 const RestaurantPage = () => {
   const { restaurantId } = useParams()
+  const foodCategoryList = []
   const { data, isLoading } = useRequestData({}, `${BASE_URL}/restaurants/${restaurantId}`)
   const { restaurant } = data
-  const foodCategoryList = []
-
 
   const createCategoryList = restaurant?.products.filter(item => {
     const categoryFind = foodCategoryList?.find(category => {
@@ -26,9 +26,11 @@ const RestaurantPage = () => {
     }
   })
 
+  console.log(createCategoryList)
+
   const renderCategorys = foodCategoryList?.map((category, index) => {
-    return <RestaurantsCategory key={index} name={category} 
-    products={restaurant?.products} restaurantId={restaurantId} />
+    return <RestaurantsCategory key={index} name={category}
+      products={restaurant?.products} restaurantId={restaurantId} />
   })
 
 
