@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { goToRestaurant } from "../../routes/coordinators";
 import { ContainerDiv, TextDiv } from "../../components/RestaurantsCards/StyledRestaurantsCards";
 import GlobalStateContext from "../../global/GlobalStateContext";
+import { DivText } from "./StyledSearchePage";
 
 function SearchPage() {
   const {restaurantsList } =
@@ -26,7 +27,7 @@ function SearchPage() {
       return item.name.toLowerCase().includes(searchItem.toLowerCase());
     });
     if (filteredArray?.length === 0) {
-      return (<div>Não Encontramos</div>)
+      return (<DivText>Não Encontramos :(</DivText>)
       
     } else {
       return (filteredArray?.map((item)=> {
