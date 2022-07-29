@@ -17,6 +17,7 @@ const GlobalState = (props) => {
   const [restaurantCartId, setRestaurantCartId] = useState(0)
   
   useEffect(() => {
+    clearCart()
     getCartInLocalStorage()
     console.log('GlobalState cart', cart)
   }, [])
@@ -38,9 +39,9 @@ const GlobalState = (props) => {
 
   const getCartInLocalStorage = () => {
     const stringCart = localStorage.getItem("cart")
-    const {cart, restaurantCartId } = JSON.parse(stringCart)
-    setCart(cart)
-    setRestaurantCartId(restaurantCartId)
+    const cartData = JSON.parse(stringCart)
+    setCart(cartData.cart)
+    setRestaurantCartId(cartData.restaurantCartId)
   };
 
   return (
