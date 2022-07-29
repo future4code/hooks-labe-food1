@@ -1,5 +1,6 @@
 import { Container } from "@mui/system";
-import React, { useContext } from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import ActiveOrder from "../../components/activeOrder/ActiveOrder";
 import CardAdress from "../../components/cardAdress/CardAdress";
 import Footer from "../../components/Footer/Footer";
@@ -12,16 +13,23 @@ import { StyledBody, StyledDiv } from "../../Styled";
 import { Line, ContainerPag, SubTotal } from "./StyledCar";
 
 const CartPage = () => {
-  const { cart, setCart, restaurantCartId, setRestaurantCartId } = useContext(GlobalStateContext)
+  const { cart, setCart,
+  restaurantCartId, setRestaurantCartId } = useContext(GlobalStateContext)
+  // const [restaurantDetails, setRestaurantDetails] = useState({})
 
-  // const { data, isLoading } = useRequestData({}, `${BASE_URL}/restaurants/${restaurantCartId}`)
-  // const { restaurant } = data
+  // useEffect(() => {
 
-  // const renderCart = restaurant.map(product => {
-  //   const idProductCart = cart?.products?.find()
-  //   if()
+  // }, [])
+
+
+  // const renderCart = restaurant?.products?.map(product => {
+  //   const idProductCart = cart?.products?.find(product => {
+
+  //   })
   // })
-  console.log("PAGINA CARRINHO:", cart)
+
+
+  console.log("cartPage:", cart)
 
   return (
     <StyledDiv>

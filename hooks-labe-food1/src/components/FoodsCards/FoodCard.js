@@ -5,7 +5,8 @@ import ModalQuantity from "../modalQuantity/ModalQuantity";
 import { CardText } from "../activeOrder/StyledActiveOrder";
 
 const FoodCard = ({ product, restaurantId }) => {
-  const { cart, setCart, clearCart, restaurantCartId, setRestaurantCartId } = useContext(GlobalStateContext);
+  const { cart, setCart, clearCart, setCartInLocalStorage,
+    restaurantCartId, setRestaurantCartId } = useContext(GlobalStateContext);
   const [open, setOpen] = useState(false);
   const [checkCart, setCheckCart] = useState(
     cart?.products?.find((item) => {
@@ -14,17 +15,17 @@ const FoodCard = ({ product, restaurantId }) => {
       }
     })
   )
-
   const [productQuantity, setProductQuantity] = useState(0)
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+  
   useEffect(() => {
     setCheckCart(checking())
-    // console.log(`checkcart ${product?.name}`, checkCart)
+    console.log('FoodCArd >carrinho', cart)
   }, [cart])
-
+  
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  
   const checking = () => {
     const checkCart = cart?.products?.find((item) => {
       if (item.id === product?.id) {
@@ -35,12 +36,8 @@ const FoodCard = ({ product, restaurantId }) => {
   }
 
   const addProduct = () => {
-    console.log(
-      'length:', cart.products.length,
-      '\nid Restaurante Carrinho:', restaurantCartId,
-      '\nid Restaurande Produto Atual:', restaurantId
-    )
-    if ( cart.products.length === 0 || (cart.products.length !== 0 && restaurantCartId === restaurantId) ) {
+    if (cart?.products?.length === 0 ||
+      (cart?.products?.length !== 0 && restaurantCartId === restaurantId)) {
       const newCart = { ...cart };
       const newProducts = {
         id: product?.id,
@@ -50,21 +47,18 @@ const FoodCard = ({ product, restaurantId }) => {
       setCart(newCart);
       handleClose();
       setRestaurantCartId(restaurantId)
+      setCartInLocalStorage({cart: newCart, restaurantCartId: restaurantCartId})
     }
     else {
       if (window.confirm("Carrinho já contem produto, deseja esvaziar e adicionar novo produto?") === true) {
         clearCart()
         alert("Carrinho vazio! Adicione novos produtos!")
         handleClose();
-        // console.log('carrinho ESVAZIADOOOO', cart.products, 'e restaurantCartId', restaurantCartId)
       } else {
         alert("Produtos mantidos no carrinho!")
         handleClose();
-        // console.log('carrinho MANTIDOOOO', cart.products, 'e restaurantCartId', restaurantCartId)
       }
     }
-
-
   };
 
   const removeProduct = () => {
@@ -77,12 +71,10 @@ const FoodCard = ({ product, restaurantId }) => {
     newCart.products.splice(checkProductInCart, 1)
     setCart(newCart)
     !cart.products.length && setRestaurantCartId('')
+    setCartInLocalStorage({cart: newCart, restaurantCartId: restaurantCartId})
   }
 
-  // const setCartInLocalStorage = (cartData) => {
-  //   localStorage.setItem("cart", cartData)
-  //   console.log('carrinho',cartData)
-  // };
+
 
   return (
     <DivCard>
