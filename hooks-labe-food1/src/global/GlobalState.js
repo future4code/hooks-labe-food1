@@ -12,15 +12,22 @@ const GlobalState = (props) => {
     products: [],
     paymentMethod: ""
   })
+  const [restaurantCartId, setRestaurantCartId] = useState(0)
   
+  const clearCart = () => {
+    const newCart = {
+      products: [],
+    paymentMethod: ""
+    };
+    setCart(newCart);
+    setRestaurantCartId('')
+    console.log("carrinho resetado", cart)
+  }
 
-  // const changeQuantity = (q) => {
-  //   setProductQuantity(q)
-  // }
   return (
     <GlobalStateContext.Provider
       value={{ categorySelected, setCategorySelected, restaurantsList, 
-        cart, setCart }}
+        cart, setCart, clearCart, restaurantCartId, setRestaurantCartId }}
     >
       {props.children}
     </GlobalStateContext.Provider>

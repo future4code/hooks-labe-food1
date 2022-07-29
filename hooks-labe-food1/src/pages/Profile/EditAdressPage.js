@@ -64,7 +64,7 @@ const EditAdressPage = () => {
 
 	return (
 		<StyledDiv>
-			<Header name="Endereço" />
+			<Header name="Endereço" haveButton={true} />
 
 			<form onSubmit={onSubmitAddress}>
 				<StyledDivInput>

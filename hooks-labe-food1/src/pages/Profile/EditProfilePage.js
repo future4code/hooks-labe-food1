@@ -57,7 +57,7 @@ const EditProfilePage = () => {
 
 	return (
 		<StyledDiv>
-			<Header name='Editar' />
+			<Header name='Editar' haveButton={true} />
 			<form onSubmit={onSubmitProfileEdit}>
 				<StyledDivInput>
 					<DivInput>

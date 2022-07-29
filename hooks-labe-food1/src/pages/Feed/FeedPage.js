@@ -57,7 +57,7 @@ const FeedPage = () => {
 
   return (
     <StyledDiv>
-      <Header name="Rappi4" />
+      <Header name="Rappi4" haveButton={false} />
       <StyledBody>
         <DivInput>
           <SearchBar

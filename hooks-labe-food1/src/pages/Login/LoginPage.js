@@ -27,7 +27,7 @@ import logo from "../../assets/logo-future-eats-invert.svg";
 const LoginPage = () => {
   const [values, setValues] = useState({
     showPassword: false,
-});
+  })
 
   const {form, handleInputChange, clear} = useForm({ email: "", password: "" })
   const navigate = useNavigate()

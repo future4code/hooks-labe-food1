@@ -1,5 +1,5 @@
 import React from 'react';
-import { DivHeader, StyledButtonHeader } from './StyledHeader';
+import { DivHeader, StyledButtonHeader, ButtontDiv } from './StyledHeader';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,9 +8,12 @@ const Header = (props) => {
 
   return (
     <DivHeader>
-      <StyledButtonHeader onClick={()=> navigate(-1)} aria-label="delete">
-        <ArrowBackIosIcon />
-      </StyledButtonHeader>
+      {props.haveButton &&
+        <ButtontDiv>
+          <StyledButtonHeader onClick={() => navigate(-1)} aria-label="delete">
+            <ArrowBackIosIcon />
+          </StyledButtonHeader>
+        </ButtontDiv>}
       <h1>{props.name}</h1>
     </DivHeader>
   )

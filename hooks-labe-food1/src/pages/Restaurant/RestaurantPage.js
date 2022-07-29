@@ -27,15 +27,14 @@ const RestaurantPage = () => {
   })
 
   const renderCategorys = foodCategoryList?.map((category, index) => {
-    return <RestaurantsCategory key={index} name={category} products={restaurant?.products} />
+    return <RestaurantsCategory key={index} name={category} 
+    products={restaurant?.products} restaurantId={restaurantId} />
   })
 
 
-  // console.log(restaurant?.products)
-
   return (
     <StyledDiv>
-      <Header name="Restaurante" />
+      <Header name="Restaurante" haveButton={true} />
       {isLoading && <ClipLoader color={'#e86e5a'} isLoading={isLoading} size={150} />}
       <RestaurantHeaderDetail restaurant={restaurant} />
       <DivOverflow>
