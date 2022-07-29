@@ -26,8 +26,8 @@ const RestaurantPage = () => {
     }
   })
 
-  const renderCategorys = foodCategoryList?.map(category => {
-    return <RestaurantsCategory name={category} products={restaurant?.products} />
+  const renderCategorys = foodCategoryList?.map((category, index) => {
+    return <RestaurantsCategory key={index} name={category} products={restaurant?.products} />
   })
 
 

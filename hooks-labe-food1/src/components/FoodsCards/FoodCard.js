@@ -4,21 +4,29 @@ import { DivCard, DivInfo, ButtonFood, ButtonQuantity } from "./StyledFoodCard";
 import ModalQuantity from "../modalQuantity/ModalQuantity";
 
 const FoodCard = ({ product }) => {
-  const { cart, setCart, productQuantity, setProductQuantity } =
+  const { cart, setCart } =
     useContext(GlobalStateContext);
   const [open, setOpen] = useState(false);
-  const [q, setQ] = useState("")
+  // const [q, setQ] = useState("")
+
+  const [productQuantity, setProductQuantity] = useState(0)
+
+  // const handleChange = (event) => {
+  //     setProductQuantity(Number(event.target.value));
+  // };
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const checkCart = cart?.products.find((item) => {
+  const checkCart = cart?.products?.find((item) => {
     if (item.id === product?.id) {
-    //  setQ(item.quantity);
-      return true;
+      // setProductQuantity(item.quantity)
+      return item.quantity
     }
-  });
+  })
 
+  console.log('product',productQuantity)
+  
   const addProduct = () => {
     // console.log(`id: ${product?.id} e quantity: ${productQuantity}`)
     const newCart = { ...cart };
@@ -29,8 +37,9 @@ const FoodCard = ({ product }) => {
     newCart.products.push(newProducts);
     setCart(newCart);
     console.log(cart);
+    console.log('check',checkCart)
     handleClose();
-    setProductQuantity("");
+    // setProductQuantity("");
   };
 
   return (
@@ -45,8 +54,10 @@ const FoodCard = ({ product }) => {
         <ModalQuantity
           open={open}
           handleClose={handleClose}
-          addProduct={addProduct}
+          onClick={addProduct}
           id={product?.id}
+          value={productQuantity}
+          onChange={setProductQuantity}
         />
       )}
       {checkCart ? (
@@ -54,7 +65,7 @@ const FoodCard = ({ product }) => {
           <ButtonFood onClick={handleOpen} color="#e86e5a">
             Remover
           </ButtonFood>
-          <ButtonQuantity color="#e86e5a">{q}</ButtonQuantity>
+          <ButtonQuantity color="#e86e5a">{productQuantity}</ButtonQuantity>
         </>
       ) : (
         <ButtonFood onClick={handleOpen} color="black">
