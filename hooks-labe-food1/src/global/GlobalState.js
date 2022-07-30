@@ -8,7 +8,7 @@ import GlobalStateContext from "./GlobalStateContext";
 const GlobalState = (props) => {
   const [categorySelected, setCategorySelected] = useState("");
   const restaurantsList = useRequestData([], `${BASE_URL}/restaurants`);
-  const [restaurantDetails, setRestaurantDetails] = useState({})
+  const [productsCart, setProductsCart] = useState([])
   const [cart, setCart] = useState(
     {
     products: [],
@@ -19,7 +19,7 @@ const GlobalState = (props) => {
   useEffect(() => {
     clearCart()
     getCartInLocalStorage()
-    console.log('GlobalState cart', cart)
+    console.log('GlobalState cart', cart, '\nid:', restaurantCartId)
   }, [])
 
 
@@ -29,8 +29,11 @@ const GlobalState = (props) => {
     paymentMethod: ""
     };
     setCart(newCart);
-    setRestaurantCartId('')
-    setCartInLocalStorage({cart: newCart, restaurantCartId: ''})
+    setRestaurantCartId(0)
+    setCartInLocalStorage({cart: newCart, restaurantCartId: 0})
+
+    const newProductsCart = [];
+    setProductsCart(newProductsCart)
   }
 
   const setCartInLocalStorage = (cartData) => {

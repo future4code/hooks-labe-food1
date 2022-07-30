@@ -23,7 +23,10 @@ import axios from "axios";
 
 const SignUp = () => {
   const [confirm, setConfirm] = useState("");
+
   const { form, handleInputChange } = useForm({
+
+
     name: "",
     email: "",
     cpf: "",
@@ -50,7 +53,9 @@ const SignUp = () => {
 
   const onSubmitPostSignup = (event) => {
     event.preventDefault();
-    console.log(confirm);
+
+    console.log(confirm)
+
     if (form.password === confirm) {
       axios
         .post(`${BASE_URL}/signup`, form)

@@ -6,6 +6,7 @@ import { CardText } from "../activeOrder/StyledActiveOrder";
 
 const FoodCard = ({ product, restaurantId }) => {
   const { cart, setCart, clearCart, setCartInLocalStorage,
+    productsCart, setProductsCart,
     restaurantCartId, setRestaurantCartId } = useContext(GlobalStateContext);
   const [open, setOpen] = useState(false);
   const [checkCart, setCheckCart] = useState(
@@ -20,7 +21,7 @@ const FoodCard = ({ product, restaurantId }) => {
   
   useEffect(() => {
     setCheckCart(checking())
-    console.log('FoodCArd >carrinho', cart)
+    // console.log('FoodCArd >carrinho', cart)
   }, [cart])
   
   const handleOpen = () => setOpen(true);
@@ -48,6 +49,11 @@ const FoodCard = ({ product, restaurantId }) => {
       handleClose();
       setRestaurantCartId(restaurantId)
       setCartInLocalStorage({cart: newCart, restaurantCartId: restaurantCartId})
+
+      const newProductsCart = [ ...productsCart, product ];
+      // newProductsCart.push(product);
+      setProductsCart(newProductsCart)
+      console.log('FoodCARD productsCart:', productsCart)
     }
     else {
       if (window.confirm("Carrinho já contem produto, deseja esvaziar e adicionar novo produto?") === true) {
@@ -70,8 +76,18 @@ const FoodCard = ({ product, restaurantId }) => {
     const newCart = { ...cart };
     newCart.products.splice(checkProductInCart, 1)
     setCart(newCart)
-    !cart.products.length && setRestaurantCartId('')
+    !cart.products.length && setRestaurantCartId(0)
     setCartInLocalStorage({cart: newCart, restaurantCartId: restaurantCartId})
+
+    const checkProduct = productsCart?.findIndex((item) => {
+      if (item.id === product?.id) {
+        return true
+      }
+    })
+    const newProductsCart = [ ...productsCart ];
+    newProductsCart.splice(checkProduct, 1)
+    setProductsCart(newProductsCart)
+
   }
 
 
