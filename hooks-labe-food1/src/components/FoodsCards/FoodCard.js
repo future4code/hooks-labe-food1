@@ -5,7 +5,7 @@ import ModalQuantity from "../modalQuantity/ModalQuantity";
 import { CardText } from "../activeOrder/StyledActiveOrder";
 
 const FoodCard = ({ product, restaurantId }) => {
-  const { cart, setCart, clearCart, setCartInLocalStorage,
+  const { cart, setCart, clearCart, setCartInLocalStorage, getCartInLocalStorage,
     productsCart, setProductsCart,
     restaurantCartId, setRestaurantCartId } = useContext(GlobalStateContext);
   const [open, setOpen] = useState(false);
@@ -21,6 +21,7 @@ const FoodCard = ({ product, restaurantId }) => {
   
   useEffect(() => {
     setCheckCart(checking())
+    // getCartInLocalStorage()
     // console.log('FoodCArd >carrinho', cart)
   }, [cart])
   
@@ -48,12 +49,14 @@ const FoodCard = ({ product, restaurantId }) => {
       setCart(newCart);
       handleClose();
       setRestaurantCartId(restaurantId)
-      setCartInLocalStorage({cart: newCart, restaurantCartId: restaurantCartId})
-
-      const newProductsCart = [ ...productsCart, product ];
-      // newProductsCart.push(product);
+      
+      const newProductsCart = [ ...productsCart];
+      newProductsCart.push(product);
       setProductsCart(newProductsCart)
       console.log('FoodCARD productsCart:', productsCart)
+      
+      const cartData = {newCart, restaurantCartId}
+      setCartInLocalStorage(cartData, newProductsCart)
     }
     else {
       if (window.confirm("Carrinho já contem produto, deseja esvaziar e adicionar novo produto?") === true) {
@@ -77,8 +80,7 @@ const FoodCard = ({ product, restaurantId }) => {
     newCart.products.splice(checkProductInCart, 1)
     setCart(newCart)
     !cart.products.length && setRestaurantCartId(0)
-    setCartInLocalStorage({cart: newCart, restaurantCartId: restaurantCartId})
-
+    
     const checkProduct = productsCart?.findIndex((item) => {
       if (item.id === product?.id) {
         return true
@@ -87,7 +89,9 @@ const FoodCard = ({ product, restaurantId }) => {
     const newProductsCart = [ ...productsCart ];
     newProductsCart.splice(checkProduct, 1)
     setProductsCart(newProductsCart)
-
+    
+    const cartData = {newCart, restaurantCartId}
+    setCartInLocalStorage(cartData, newProductsCart)
   }
 
 

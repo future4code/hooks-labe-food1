@@ -28,3 +28,19 @@ export const SubTotal = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+
+export const DivRender = styled.div`
+  width: 328px;
+  margin: 0 0 7px;
+  border-top: solid 1px #000;
+  overflow-y: scroll;
+ 
+
+  ::-webkit-scrollbar {
+    display: none;
+    }
+
+/* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+`

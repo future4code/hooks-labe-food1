@@ -11,11 +11,11 @@ const GlobalState = (props) => {
   const [productsCart, setProductsCart] = useState([])
   const [cart, setCart] = useState(
     {
-    products: [],
-    paymentMethod: ""
-  })
+      products: [],
+      paymentMethod: ""
+    })
   const [restaurantCartId, setRestaurantCartId] = useState(0)
-  
+
   useEffect(() => {
     clearCart()
     getCartInLocalStorage()
@@ -26,32 +26,42 @@ const GlobalState = (props) => {
   const clearCart = () => {
     const newCart = {
       products: [],
-    paymentMethod: ""
+      paymentMethod: ""
     };
     setCart(newCart);
     setRestaurantCartId(0)
-    setCartInLocalStorage({cart: newCart, restaurantCartId: 0})
 
     const newProductsCart = [];
     setProductsCart(newProductsCart)
+
+    const id = 0
+    const cartData = { newCart, id }
+    setCartInLocalStorage(cartData, newProductsCart)
   }
 
-  const setCartInLocalStorage = (cartData) => {
-    localStorage.setItem("cart", JSON.stringify(cartData))
+  const setCartInLocalStorage = (cartData, productsCartData) => {
+    const data = { cartData, productsCartData }
+    localStorage.setItem("cart", JSON.stringify(data))
+    localStorage.setItem("productsCart", JSON.stringify(data))
   }
 
   const getCartInLocalStorage = () => {
     const stringCart = localStorage.getItem("cart")
-    const cartData = JSON.parse(stringCart)
-    setCart(cartData.cart)
-    setRestaurantCartId(cartData.restaurantCartId)
+    const data = JSON.parse(stringCart)
+    console.log('DATAAAAAAAAAAAA:', data)
+    setCart(data.cartData.cart)
+    setRestaurantCartId(data.cartData.restaurantCartId)
+    setProductsCart(data.productsCartData)
   };
 
   return (
     <GlobalStateContext.Provider
-      value={{ categorySelected, setCategorySelected, restaurantsList, 
-        cart, setCart, setCartInLocalStorage, clearCart, 
-        restaurantCartId, setRestaurantCartId }}
+      value={{
+        categorySelected, setCategorySelected, restaurantsList,
+        cart, setCart, setCartInLocalStorage, getCartInLocalStorage,
+        clearCart, productsCart, setProductsCart,
+        restaurantCartId, setRestaurantCartId
+      }}
     >
       {props.children}
     </GlobalStateContext.Provider>
