@@ -1,19 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { useState } from "react";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { goToRegisterAdressPage, goToSignUp } from "../../routes/coordinators";
+import { goToRegisterAdressPage } from "../../routes/coordinators";
 import {
   StyledDivInput,
   StyledDiv,
   StyledButton,
   StyledInput,
   DivInput,
-  DivButton,
   StyledInputsenha,
 } from "../../Styled";
 import { LogoSvg } from "../../Styled";
@@ -25,13 +23,15 @@ import axios from "axios";
 
 const SignUp = () => {
   const [confirm, setConfirm] = useState("");
-  const {form, handleInputChange} = useForm({
+
+  const { form, handleInputChange } = useForm({
+
+
     name: "",
     email: "",
     cpf: "",
     password: "",
   });
-
   const [values, setValues] = useState({
     showPassword: false,
   });
@@ -53,7 +53,9 @@ const SignUp = () => {
 
   const onSubmitPostSignup = (event) => {
     event.preventDefault();
+
     console.log(confirm)
+
     if (form.password === confirm) {
       axios
         .post(`${BASE_URL}/signup`, form)
