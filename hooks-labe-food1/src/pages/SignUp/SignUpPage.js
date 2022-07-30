@@ -25,7 +25,7 @@ import axios from "axios";
 
 const SignUp = () => {
   const [confirm, setConfirm] = useState("");
-  const [formInput, handleInputChange] = useForm({
+  const {form, handleInputChange} = useForm({
     name: "",
     email: "",
     cpf: "",
@@ -54,9 +54,9 @@ const SignUp = () => {
   const onSubmitPostSignup = (event) => {
     event.preventDefault();
     console.log(confirm)
-    if (formInput.password === confirm) {
+    if (form.password === confirm) {
       axios
-        .post(`${BASE_URL}/signup`, formInput)
+        .post(`${BASE_URL}/signup`, form)
         .then((res) => {
           localStorage.setItem("token", res.data.token);
           alert("Usuário criado com sucesso!");
@@ -83,7 +83,7 @@ const SignUp = () => {
             <StyledInput
               label={"Nome"}
               name="name"
-              value={formInput.name}
+              value={form.name}
               onChange={handleInputChange}
               variant="outlined"
               placeholder="Nome e Sobrenome"
@@ -94,7 +94,7 @@ const SignUp = () => {
             <StyledInput
               label={"E-mail"}
               name="email"
-              value={formInput.email}
+              value={form.email}
               onChange={handleInputChange}
               variant="outlined"
               placeholder="email@email.com"
@@ -105,7 +105,7 @@ const SignUp = () => {
             <StyledInput
               label={"CPF"}
               name="cpf"
-              value={formInput.cpf}
+              value={form.cpf}
               onChange={handleInputChange}
               variant="outlined"
               placeholder="000.000.000-00"
@@ -116,7 +116,7 @@ const SignUp = () => {
             <StyledInputsenha
               label={"senha"}
               name="password"
-              value={formInput.password}
+              value={form.password}
               onChange={handleInputChange}
               variant="outlined"
               placeholder="Mínimo 6 caracteres"
