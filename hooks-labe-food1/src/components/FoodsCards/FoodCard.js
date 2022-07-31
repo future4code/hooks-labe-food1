@@ -5,7 +5,7 @@ import ModalQuantity from "../modalQuantity/ModalQuantity";
 import { CardText } from "../activeOrder/StyledActiveOrder";
 
 const FoodCard = ({ product, restaurantId }) => {
-  const { cart, setCart, clearCart, setCartInLocalStorage, getCartInLocalStorage,
+  const { cart, setCart, clearCart, setCartInLocalStorage,
     productsCart, setProductsCart,
     restaurantCartId, setRestaurantCartId } = useContext(GlobalStateContext);
   const [open, setOpen] = useState(false);
@@ -15,7 +15,6 @@ const FoodCard = ({ product, restaurantId }) => {
   
   useEffect(() => {
     setCheckCart(checking())
-    // getCartInLocalStorage()
     console.log('FoodCArd >prod', productsCart)
   }, [cart])
   
@@ -53,8 +52,8 @@ const FoodCard = ({ product, restaurantId }) => {
 
       
       
-      const data = {newCart, restaurantCartId, newProductsCart}
-      setCartInLocalStorage(data)
+      // const data = {newCart, restaurantCartId:restaurantCartId, newProductsCart}
+      setCartInLocalStorage(newCart, restaurantCartId, newProductsCart)
     }
     else {
       if (window.confirm("Carrinho já contem produto, deseja esvaziar e adicionar novo produto?") === true) {
@@ -88,8 +87,8 @@ const FoodCard = ({ product, restaurantId }) => {
     newProductsCart.splice(checkProduct, 1)
     setProductsCart(newProductsCart)
     
-    const data = {newCart, restaurantCartId, newProductsCart}
-    setCartInLocalStorage(data)
+    // const data = {newCart, restaurantCartId, newProductsCart}
+    setCartInLocalStorage(newCart, restaurantCartId, newProductsCart)
   }
 
 

@@ -30,6 +30,7 @@ const FeedPage = () => {
   useProtectedPage();
 
   useEffect(()=>{
+    // getCartInLocalStorage()
     console.log('FoodCArd >carrinho', productsCart)
   }, [])
 
