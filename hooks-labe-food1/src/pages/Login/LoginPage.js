@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "axios";
-import { useNavigate,} from "react-router";
+import { useNavigate } from "react-router";
 import { useState } from "react";
-import OutlinedInput from '@mui/material/OutlinedInput';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import OutlinedInput from "@mui/material/OutlinedInput";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import useForm from "../../hooks/useForm";
 import { goToFeed, goToSignUp } from "../../routes/coordinators";
 import { BASE_URL } from "../../constants/BASE_URL.js";
@@ -18,42 +18,45 @@ import {
   DivInput,
   DivButton,
   StyledInputsenha,
-  DivH1
+  DivH1,
 } from "../../Styled";
 import { LogoSvg } from "../../Styled";
 import logo from "../../assets/logo-future-eats-invert.svg";
-
+import { FormControl, InputLabel } from "@mui/material";
 
 const LoginPage = () => {
   const [values, setValues] = useState({
     showPassword: false,
-  })
+  });
 
-  const {form, handleInputChange, clear} = useForm({ email: "", password: "" })
-  const navigate = useNavigate()
+  const { form, handleInputChange, clear } = useForm({
+    email: "",
+    password: "",
+  });
+  const navigate = useNavigate();
 
   const handleClickShowPassword = () => {
     setValues({
-        ...values,
-        showPassword: !values.showPassword,
+      ...values,
+      showPassword: !values.showPassword,
     });
-};
+  };
 
-const handleMouseDownPassword = (event) => {
+  const handleMouseDownPassword = (event) => {
     event.preventDefault();
-};
+  };
 
-
-const onSubmitForm = (event) => {
-  event.preventDefault()
-  console.log(form)
-  axios.post(`${BASE_URL}/login`, form)
-    .then(res => {
-      localStorage.setItem("token", res.data.token)
-      goToFeed(navigate)
-    })
-    .catch(err => console.log(err.message)) 
-};
+  const onSubmitForm = (event) => {
+    event.preventDefault();
+    console.log(form);
+    axios
+      .post(`${BASE_URL}/login`, form)
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        goToFeed(navigate);
+      })
+      .catch((err) => console.log(err.message));
+  };
 
   return (
     <StyledDiv>
@@ -72,37 +75,63 @@ const onSubmitForm = (event) => {
               variant="outlined"
               placeholder="email@email.com"
               required
+              fullWidth
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
           </DivInput>
           <DivInput>
-            <StyledInputsenha
-              name="password"
-              value={form.password}
-              onChange={handleInputChange}
-              label={"senha"}
+            <FormControl
               variant="outlined"
-              placeholder="Mínimo 6 caracteres"
-              pattern={"^.{6,}"}
-              title={"A senha deve ter no mínimo 6 caracteres"}
-              required
-              type={values.showPassword ? 'text' : 'password'}
-              endAdornment={
-                <InputAdornment position="end">
+              required 
+              fullWidth
+              >
+              <InputLabel 
+              shrink
+              htmlFor="outlined-adornment-password"
+              >
+                Senha
+              </InputLabel>
+              <StyledInputsenha
+                notched 
+                id="outlined-adornment-password"
+                type={values.showPassword ? "text" : "password"}
+                name={"password"}
+                value={form.password}
+                onChange={handleInputChange}
+                // label={"senha"}
+                // variant="outlined"
+                placeholder={"Mínimo 6 caracteres"}
+                // pattern={"^.{6,}"}
+                // title={"A senha deve ter no mínimo 6 caracteres"}
+                // required
+                InputLabelProps={{
+                  pattern: "^.{6,}$",
+                  title: "A senha deve ter no mínimo 6 caracteres",
+                }}
+
+                endAdornment={
+                  <InputAdornment position="end">
                     <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
                     >
-                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
-                </InputAdornment>
-            }
-            />
+                  </InputAdornment>
+                }
+                // notchedOutline
+                labelWidth={56}
+    
+              />
+            </FormControl>
           </DivInput>
-            <StyledButton color="primary" variant="contained" type={"submit"}>
-              Entrar
-            </StyledButton>
+          <StyledButton color="primary" variant="contained" type={"submit"}>
+            Entrar
+          </StyledButton>
         </StyledDivInput>
       </form>
       <DivH1>
