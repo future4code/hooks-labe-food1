@@ -5,28 +5,29 @@ import FoodCard from "../../components/FoodsCards/FoodCard";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import Payment from "../../components/Payment/Payment";
+import { BASE_URL } from "../../constants/BASE_URL";
 import GlobalStateContext from "../../global/GlobalStateContext";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
+import useRequestData from "../../hooks/useRequestData";
 import { StyledBody, StyledDiv } from "../../Styled";
 import { Line, ContainerPag, SubTotal, DivRender } from "./StyledCar";
 
 const CartPage = () => {
   const {
-    restaurantsList,
+    
     cart,
     setCart,
     productsCart,
     setProductsCart,
     restaurantCartId,
     setRestaurantCartId,
+    clearCart,
   } = useContext(GlobalStateContext);
   let soma = 0;
+  const dataRestaurant = useRequestData([], `${BASE_URL}/restaurants`);
+  const { restaurants } = dataRestaurant?.data;
 
   useProtectedPage();
-
-  // useEffect(()=>{
-  //   getCartInLocalStorage()
-  // }, [])
 
   const renderProducts = productsCart?.map((product) => {
     const checkCart = cart?.products?.find((item) => {
@@ -43,31 +44,30 @@ const CartPage = () => {
     );
   });
 
-  const restaurant = restaurantsList?.data.restaurants?.find((item, index) => {
+  const restaurant = restaurants && restaurants.find((item, index) => {
     if (item.id === restaurantCartId) {
+      console.log("card id", restaurantCartId)
       return true;
     }
   });
-
-  console.log(restaurant);
+  console.log("teste cart", restaurant)
 
   return (
     <StyledDiv>
       <Header name="Carrinho" haveButton={false} />
       <StyledBody>
         <CardAdress />
-        {cart?.products.length && <DeliveryAddress restaurant={restaurant} />}
-        {cart?.products.length ? (
+        {cart?.products?.length && <DeliveryAddress restaurant={restaurant} />}
+        {cart?.products?.length ? (
           <DivRender>{renderProducts}</DivRender>
         ) : (
           <h1>Carrinho Vazio</h1>
         )}
         <ContainerPag>
-          {/* <h1>{cart?.product.length ? Frete R$ 00}</h1> */}
-          <h1>Frete R${restaurant?.shipping},00</h1>
+          {cart?.products?.length && <h1>Frete R${restaurant?.shipping},00</h1>}
           <SubTotal>
             <h1>SUBTOTAL</h1>
-            {cart?.products.length ? (
+            {cart?.products?.length ? (
               <h2>
                 <b>R${(soma + restaurant?.shipping).toFixed(2)}</b>
               </h2>
@@ -80,7 +80,6 @@ const CartPage = () => {
           <h1>Forma de pagamento</h1>
         </Line>
         <Payment />
-        {/* <ActiveOrder/> */}
       </StyledBody>
       <Footer />
     </StyledDiv>
