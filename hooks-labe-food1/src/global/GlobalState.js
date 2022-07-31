@@ -17,7 +17,9 @@ const GlobalState = (props) => {
   const [restaurantCartId, setRestaurantCartId] = useState(0)
 
   useEffect(() => {
-    clearCart()
+    if(localStorage.getItem("cart") === null){
+      clearCart()
+    }
     getCartInLocalStorage()
     // console.log('RENDERIZAÇÃO INICIAL prod:', productsCart)
   }, [])
@@ -49,7 +51,8 @@ const GlobalState = (props) => {
 
     setCart(data.cart)
     setRestaurantCartId(data.restaurantCartId)
-    setProductsCart(data.ProductsCart)
+    setProductsCart(data.productsCart)
+    // productsCart estava com P maiusculo 
     console.log('GETLOCALSTORAGE prodCArt:', data)
   };
 
