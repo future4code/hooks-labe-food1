@@ -9,20 +9,14 @@ const FoodCard = ({ product, restaurantId }) => {
     productsCart, setProductsCart,
     restaurantCartId, setRestaurantCartId } = useContext(GlobalStateContext);
   const [open, setOpen] = useState(false);
-  const [checkCart, setCheckCart] = useState(
-    cart?.products?.find((item) => {
-      if (item.id === product?.id) {
-        return item.quantity
-      }
-    })
-  )
+  const [checkCart, setCheckCart] = useState(false)
   const [productQuantity, setProductQuantity] = useState(0)
 
   
   useEffect(() => {
     setCheckCart(checking())
     // getCartInLocalStorage()
-    // console.log('FoodCArd >carrinho', cart)
+    console.log('FoodCArd >prod', productsCart)
   }, [cart])
   
   const handleOpen = () => setOpen(true);
@@ -31,32 +25,36 @@ const FoodCard = ({ product, restaurantId }) => {
   const checking = () => {
     const checkCart = cart?.products?.find((item) => {
       if (item.id === product?.id) {
-        return true
+        return item.quantity
       }
     })
     return checkCart
   }
 
   const addProduct = () => {
-    if (cart?.products?.length === 0 ||
-      (cart?.products?.length !== 0 && restaurantCartId === restaurantId)) {
+    console.log('ADDPROD prod:', productsCart)
+    if (cart.products.length === 0 || (cart.products.length > 0 && restaurantCartId === restaurantId)) {
+
       const newCart = { ...cart };
       const newProducts = {
         id: product?.id,
         quantity: productQuantity,
       };
+
+      handleClose();
       newCart.products.push(newProducts);
       setCart(newCart);
-      handleClose();
       setRestaurantCartId(restaurantId)
       
       const newProductsCart = [ ...productsCart];
+      // const newProductsCart = productsCart.slice()
       newProductsCart.push(product);
       setProductsCart(newProductsCart)
-      console.log('FoodCARD productsCart:', productsCart)
+
       
-      const cartData = {newCart, restaurantCartId}
-      setCartInLocalStorage(cartData, newProductsCart)
+      
+      const data = {newCart, restaurantCartId, newProductsCart}
+      setCartInLocalStorage(data)
     }
     else {
       if (window.confirm("Carrinho já contem produto, deseja esvaziar e adicionar novo produto?") === true) {
@@ -79,7 +77,7 @@ const FoodCard = ({ product, restaurantId }) => {
     const newCart = { ...cart };
     newCart.products.splice(checkProductInCart, 1)
     setCart(newCart)
-    !cart.products.length && setRestaurantCartId(0)
+    cart.products.length === 0 && setRestaurantCartId(0)
     
     const checkProduct = productsCart?.findIndex((item) => {
       if (item.id === product?.id) {
@@ -90,8 +88,8 @@ const FoodCard = ({ product, restaurantId }) => {
     newProductsCart.splice(checkProduct, 1)
     setProductsCart(newProductsCart)
     
-    const cartData = {newCart, restaurantCartId}
-    setCartInLocalStorage(cartData, newProductsCart)
+    const data = {newCart, restaurantCartId, newProductsCart}
+    setCartInLocalStorage(data)
   }
 
 
@@ -102,7 +100,7 @@ const FoodCard = ({ product, restaurantId }) => {
       <DivInfo>
         <h2>{product?.name}</h2>
         <h4>{product?.description}</h4>
-        <h1>R${product?.price},00</h1>
+        <h1>R${product?.price}</h1>
       </DivInfo>
       {open && (
         <ModalQuantity

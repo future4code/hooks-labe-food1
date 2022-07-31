@@ -6,7 +6,6 @@ export const DivCategory = styled.div`
     padding: 12px 0 12px 16px;
     display: flex;
     flex-direction: row;
-    /* justify-content: space-evenly; */
     align-items: center;
     overflow-x: scroll;
     overflow-y: hidden;

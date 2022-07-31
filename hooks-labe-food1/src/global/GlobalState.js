@@ -8,50 +8,49 @@ import GlobalStateContext from "./GlobalStateContext";
 const GlobalState = (props) => {
   const [categorySelected, setCategorySelected] = useState("");
   const restaurantsList = useRequestData([], `${BASE_URL}/restaurants`);
+
   const [productsCart, setProductsCart] = useState([])
-  const [cart, setCart] = useState(
-    {
-      products: [],
-      paymentMethod: ""
-    })
+  const [cart, setCart] = useState({
+    products: [],
+    paymentMethod: ""
+  })
   const [restaurantCartId, setRestaurantCartId] = useState(0)
 
   useEffect(() => {
     clearCart()
     getCartInLocalStorage()
-    console.log('GlobalState cart', cart, '\nid:', restaurantCartId)
+    // console.log('RENDERIZAÇÃO INICIAL prod:', productsCart)
   }, [])
 
 
   const clearCart = () => {
-    const newCart = {
+    const cart = {
       products: [],
       paymentMethod: ""
     };
-    setCart(newCart);
+    setCart(cart);
     setRestaurantCartId(0)
+    setProductsCart([])
 
-    const newProductsCart = [];
-    setProductsCart(newProductsCart)
-
-    const id = 0
-    const cartData = { newCart, id }
-    setCartInLocalStorage(cartData, newProductsCart)
+    setCartInLocalStorage(cart, 0 , [])
   }
 
-  const setCartInLocalStorage = (cartData, productsCartData) => {
-    const data = { cartData, productsCartData }
+
+  const setCartInLocalStorage = (cart, restaurantCartId, productsCart) => {
+    const data = { cart, restaurantCartId, productsCart }
     localStorage.setItem("cart", JSON.stringify(data))
-    localStorage.setItem("productsCart", JSON.stringify(data))
+    console.log('SETLOCALSTORAE', productsCart)
   }
+
 
   const getCartInLocalStorage = () => {
-    const stringCart = localStorage.getItem("cart")
-    const data = JSON.parse(stringCart)
-    console.log('DATAAAAAAAAAAAA:', data)
-    setCart(data.cartData.cart)
-    setRestaurantCartId(data.cartData.restaurantCartId)
-    setProductsCart(data.productsCartData)
+    const stringData = localStorage.getItem("cart")
+    const data = JSON.parse(stringData)
+
+    setCart(data.cart)
+    setRestaurantCartId(data.restaurantCartId)
+    setProductsCart(data.ProductsCart)
+    console.log('GETLOCALSTORAGE prodCArt:', data)
   };
 
   return (

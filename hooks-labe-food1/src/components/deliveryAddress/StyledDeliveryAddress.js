@@ -3,10 +3,9 @@ import styled from 'styled-components'
 export const ContainerAddress = styled.div`
   width: 358px;
   height: 76px;
-  margin: 16px 0;
-  margin-top: 0px;
+  margin-bottom: 8px;
   padding: 16px;
-  background-color: #eee;
+  /* background-color: #eee; */
   display: flex;
   justify-content: space-between;
   align-items: center;

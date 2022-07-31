@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import RestaurantsCards from "../../components/RestaurantsCards/RestaurantsCards";
 import Header from "../../components/Header/Header";
 import GlobalStateContext from "../../global/GlobalStateContext";
@@ -19,7 +19,7 @@ import Footer from "../../components/Footer/Footer";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
 const FeedPage = () => {
-  const { categorySelected, setCategorySelected, restaurantsList } =
+  const { categorySelected, setCategorySelected, restaurantsList, cart, productsCart } =
     useContext(GlobalStateContext);
   const { restaurants } = restaurantsList?.data;
   const categoryList = [];
@@ -28,6 +28,10 @@ const FeedPage = () => {
   const [categoryFilter, setCategoryFilter] = useState(undefined);
   
   useProtectedPage();
+
+  useEffect(()=>{
+    console.log('FoodCArd >carrinho', productsCart)
+  }, [])
 
   const renderRestaurants = restaurants?.map((item) => {
     return <RestaurantsCards key={item.id} restaurant={item} />;
@@ -82,7 +86,7 @@ const FeedPage = () => {
         </DivCategory>
         <DivOverflow>
           {restaurantsList?.isLoading && (
-            <ClipLoader color={"#e86e5a"} isLoading={restaurantsList?.isLoading} size={150} />
+            <ClipLoader color={"#e86e5a"} size={150} />
           )}
           {!categorySelected ? (
             <>{renderRestaurants}</>

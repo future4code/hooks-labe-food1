@@ -32,7 +32,7 @@ export const SubTotal = styled.div`
 export const DivRender = styled.div`
   width: 328px;
   margin: 0 0 7px;
-  border-top: solid 1px #000;
+  /* border-top: solid 1px #000; */
   overflow-y: scroll;
  
 

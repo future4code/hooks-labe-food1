@@ -1,17 +1,12 @@
-import { Container } from "@mui/system";
-import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import ActiveOrder from "../../components/activeOrder/ActiveOrder";
 import CardAdress from "../../components/cardAdress/CardAdress";
 import DeliveryAddress from "../../components/deliveryAddress/DeliveryAddress";
 import FoodCard from "../../components/FoodsCards/FoodCard";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import Payment from "../../components/Payment/Payment";
-import { BASE_URL } from "../../constants/BASE_URL";
 import GlobalStateContext from "../../global/GlobalStateContext";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import useRequestData from "../../hooks/useRequestData";
 import { StyledBody, StyledDiv } from "../../Styled";
 import { Line, ContainerPag, SubTotal, DivRender } from "./StyledCar";
 
@@ -19,11 +14,9 @@ const CartPage = () => {
   const { restaurantsList, cart, setCart, productsCart, setProductsCart,
     restaurantCartId, setRestaurantCartId } = useContext(GlobalStateContext)
   let soma = 0
+
   useProtectedPage();
 
-  // useEffect(() => {
-
-  // }, [])
 
   const renderProducts = productsCart?.map(product => {
     const checkCart = cart?.products?.find((item) => {
@@ -35,8 +28,14 @@ const CartPage = () => {
       restaurantId={restaurantCartId} />
   })
 
-  const restaurant = restaurantsList?.data?.restaurants[restaurantCartId - 1]
-  console.log(cart?.products.length)
+ 
+    const restaurant = restaurantsList?.data.restaurants?.find((item, index) => {
+      if (item.id === restaurantCartId) {
+        return index
+      }
+    })
+
+  console.log(restaurant)
 
   return (
     <StyledDiv>
@@ -44,12 +43,13 @@ const CartPage = () => {
       <StyledBody>
         <CardAdress />
         {cart?.products.length && <DeliveryAddress restaurant={restaurant} />}
-        {cart?.products.length ? <DivRender>
-          {renderProducts}
-        </DivRender> :
+        {cart?.products.length ?
+          <DivRender>
+            {renderProducts}
+          </DivRender> :
           <h1>Carrinho Vazio</h1>}
         <ContainerPag>
-          <h1>Frete R${restaurant?.shipping}</h1>
+          <h1>Frete R${restaurant?.shipping},00</h1>
           <SubTotal>
             <h1>SUBTOTAL</h1>
             {cart?.products.length ?
