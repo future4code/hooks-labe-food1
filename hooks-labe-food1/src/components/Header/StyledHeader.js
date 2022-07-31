@@ -8,7 +8,7 @@ export const DivHeader = styled.div`
   align-items: center;
   width: 360px;
   min-height: 64px;
-  margin: 0 auto 16px;
+  /* margin: 0 auto 16px; */
   /* padding: 16px; */
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   position: relative;
