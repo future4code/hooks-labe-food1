@@ -48,12 +48,13 @@ const LoginPage = () => {
 
   const onSubmitForm = (event) => {
     event.preventDefault();
-    console.log(form);
+    // console.log(form);
     axios
       .post(`${BASE_URL}/login`, form)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         goToFeed(navigate);
+        console.log("form");
       })
       .catch((err) => console.log(err.message));
   };
@@ -82,35 +83,23 @@ const LoginPage = () => {
             />
           </DivInput>
           <DivInput>
-            <FormControl
-              variant="outlined"
-              required 
-              fullWidth
-              >
-              <InputLabel 
-              shrink
-              htmlFor="outlined-adornment-password"
-              >
+            <FormControl variant="outlined" required fullWidth>
+              <InputLabel shrink htmlFor="outlined-adornment-password">
                 Senha
               </InputLabel>
               <StyledInputsenha
-                notched 
+                notched
                 id="outlined-adornment-password"
                 type={values.showPassword ? "text" : "password"}
                 name={"password"}
                 value={form.password}
                 onChange={handleInputChange}
-                // label={"senha"}
-                // variant="outlined"
+                label="senha"
                 placeholder={"Mínimo 6 caracteres"}
-                // pattern={"^.{6,}"}
-                // title={"A senha deve ter no mínimo 6 caracteres"}
-                // required
-                InputLabelProps={{
-                  pattern: "^.{6,}$",
-                  title: "A senha deve ter no mínimo 6 caracteres",
+                inputProps={{
+                  inputMode: "numeric",
+                  pattern: "[0-9a-zA-Z]{6,}",
                 }}
-
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -123,13 +112,11 @@ const LoginPage = () => {
                     </IconButton>
                   </InputAdornment>
                 }
-                // notchedOutline
-                labelWidth={56}
-    
+            
               />
             </FormControl>
           </DivInput>
-          <StyledButton color="primary" variant="contained" type={"submit"}>
+          <StyledButton color="primary" variant="contained" type="submit">
             Entrar
           </StyledButton>
         </StyledDivInput>
