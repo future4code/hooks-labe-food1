@@ -15,7 +15,7 @@ const FoodCard = ({ product, restaurantId }) => {
   
   useEffect(() => {
     setCheckCart(checking())
-    console.log('FoodCArd >prod', productsCart)
+    // console.log('FoodCArd >prod', productsCart)
   }, [cart])
   
   const handleOpen = () => setOpen(true);

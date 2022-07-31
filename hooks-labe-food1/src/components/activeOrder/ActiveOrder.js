@@ -1,18 +1,17 @@
-import React from "react";
-import { BASE_URL } from "../../constants/BASE_URL";
-import useRequestData from "../../hooks/useRequestData";
+import React, { useContext } from "react";
+import GlobalStateContext from "../../global/GlobalStateContext";
 import { ContainerActiveOrder,CardText, StyledAccessTimeIcon  } from "./StyledActiveOrder";
 
 const ActiveOrder = () => {
-  const {data} = useRequestData({}, `${BASE_URL}/active-order`)
-  console.log(data)
+  const { order1} =
+  useContext(GlobalStateContext);
   return (
     <ContainerActiveOrder>
       <StyledAccessTimeIcon style={{ color: "#fff" }} sx={{ fontSize: 35 }} />
       <CardText>
         <h1 style={{ color: "#fff" }} >Pedido em andamento</h1>
-        <h1>Bullguer Vila Madalena</h1>
-        <h3>SUBTOTAL R$67,00</h3>
+        <h1>{order1.restaurantName}</h1>
+        <h3>SUBTOTAL R${order1.totalPrice}</h3>
       </CardText>
     </ContainerActiveOrder>
   );

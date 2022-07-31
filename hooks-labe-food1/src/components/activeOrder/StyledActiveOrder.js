@@ -4,7 +4,6 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 export const ContainerActiveOrder = styled.div`
   width: 360px;
   height: 118px;
-  margin: 99px 0 49px;
   padding: 24px;
   background-color: #e86e5a;
   display: flex;

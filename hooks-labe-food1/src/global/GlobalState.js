@@ -7,14 +7,19 @@ import GlobalStateContext from "./GlobalStateContext";
 
 const GlobalState = (props) => {
   const [categorySelected, setCategorySelected] = useState("");
-  const restaurantsList = useRequestData([], `${BASE_URL}/restaurants`);
-
-  const [productsCart, setProductsCart] = useState([])
+  const [ restaurantList, setRestaurantList] = useState([])
+   const [productsCart, setProductsCart] = useState([])
   const [cart, setCart] = useState({
     products: [],
     paymentMethod: ""
   })
   const [restaurantCartId, setRestaurantCartId] = useState(0)
+  // const {data} = useRequestData({}, `${BASE_URL}/active-order`)
+  // // const {order} = data
+  const [order1, setOrder1] = useState({})
+  
+
+  console.log("restaurante global", restaurantList)
 
   useEffect(() => {
     if(localStorage.getItem("cart") === null){
@@ -59,10 +64,10 @@ const GlobalState = (props) => {
   return (
     <GlobalStateContext.Provider
       value={{
-        categorySelected, setCategorySelected, restaurantsList,
+        categorySelected, setCategorySelected, restaurantList, setRestaurantList,
         cart, setCart, setCartInLocalStorage, getCartInLocalStorage,
         clearCart, productsCart, setProductsCart,
-        restaurantCartId, setRestaurantCartId
+        restaurantCartId, setRestaurantCartId,  order1, setOrder1
       }}
     >
       {props.children}

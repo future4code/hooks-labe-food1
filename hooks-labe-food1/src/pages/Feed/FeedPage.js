@@ -17,22 +17,41 @@ import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import Footer from "../../components/Footer/Footer";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import { ContainerActiveOrder } from "../../components/activeOrder/StyledActiveOrder";
+import ActiveOrder from "../../components/activeOrder/ActiveOrder";
 
 const FeedPage = () => {
-  const { categorySelected, setCategorySelected, restaurantsList, cart, productsCart } =
-    useContext(GlobalStateContext);
-  const { restaurants } = restaurantsList?.data;
+  const {
+    categorySelected,
+    setCategorySelected,
+    restaurantList,
+    setRestaurantList,
+    cart,
+    productsCart,
+    order1,
+    setOrder1,
+  } = useContext(GlobalStateContext);
+  const dataRestaurant = useRequestData([], `${BASE_URL}/restaurants`);
+  const { restaurants } = dataRestaurant?.data;
   const categoryList = [];
   const [isSelected, setIsSelected] = useState(false);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [categoryFilter, setCategoryFilter] = useState(undefined);
-  
+  const { data } = useRequestData({}, `${BASE_URL}/active-order`);
+  const { order } = data;
+
+  console.log("feed",restaurants);
   useProtectedPage();
 
-  useEffect(()=>{
-    // getCartInLocalStorage()
-    console.log('FoodCArd >carrinho', productsCart)
-  }, [])
+  useEffect(() => {
+    setRestaurantList(restaurants);
+    setOrder1(order);
+    console.log("FoodCArd >carrinho", productsCart);
+  }, [order]);
+
+  // useEffect(() => {
+  //   setRestaurantList(restaurants);
+  // }, []);
 
   const renderRestaurants = restaurants?.map((item) => {
     return <RestaurantsCards key={item.id} restaurant={item} />;
@@ -86,7 +105,7 @@ const FeedPage = () => {
           })}
         </DivCategory>
         <DivOverflow>
-          {restaurantsList?.isLoading && (
+          {restaurantList?.isLoading && (
             <ClipLoader color={"#e86e5a"} size={150} />
           )}
           {!categorySelected ? (
@@ -95,6 +114,7 @@ const FeedPage = () => {
             <>{renderRestaurantsCategory}</>
           )}
         </DivOverflow>
+        {order1 && <ActiveOrder />}
       </StyledBody>
       <Footer />
     </StyledDiv>
