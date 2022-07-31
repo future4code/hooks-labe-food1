@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import { BASE_URL } from '../../constants/BASE_URL';
 import useForm from '../../hooks/useForm';
+import { goToFeed } from '../../routes/coordinators';
 import {
 	DivH1,
 	DivInput,
@@ -13,6 +15,7 @@ import {
 } from '../../Styled';
 
 const RegisterAdressPage = () => {
+	const navigate = useNavigate()
 	const { form, handleInputChange, clear } = useForm({
 		street: '',
 		number: '',
@@ -24,7 +27,6 @@ const RegisterAdressPage = () => {
 
 	const onSubmitAddress = (event) => {
 		event.preventDefault();
-
 		const url = `${BASE_URL}/address`;
 
 		const headers = {
@@ -39,6 +41,7 @@ const RegisterAdressPage = () => {
 				localStorage.setItem('token', response.data.token);
 				alert('Endereço registrado.');
 				clear();
+				goToFeed(navigate)
 			})
 			.catch((error) => {
 				alert(error.response);
