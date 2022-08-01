@@ -30,8 +30,13 @@ Projeto Final do módulo Front-End do curos de Desenvolvimento Web Full Stack da
 
 
 ## Screenshots
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+<img src='https://cdn.discordapp.com/attachments/939993059670757458/1003461597957722113/mobile.png' />
+<img src='https://cdn.discordapp.com/attachments/939993059670757458/1003461598360387584/mobile_1.png' />
+<img src='https://cdn.discordapp.com/attachments/939993059670757458/1003461598716899338/mobile_2.png' />
+<img src='https://cdn.discordapp.com/attachments/939993059670757458/1003461599081791648/mobile_3.png' />
+<img src='https://cdn.discordapp.com/attachments/939993059670757458/1003461599446708314/mobile_4.png' />
+<img src='https://cdn.discordapp.com/attachments/939993059670757458/1003461599757074523/mobile_5.png' />
+<img src='https://cdn.discordapp.com/attachments/939993059670757458/1003461600189108314/mobile_6.png' />
 
 
 ## Documentação
