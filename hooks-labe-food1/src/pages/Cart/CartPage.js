@@ -46,11 +46,9 @@ const CartPage = () => {
 
   const restaurant = restaurants && restaurants.find((item, index) => {
     if (item.id === restaurantCartId) {
-      console.log("card id", restaurantCartId)
       return true;
     }
   });
-  console.log("teste cart", restaurant)
 
   return (
     <StyledDiv>

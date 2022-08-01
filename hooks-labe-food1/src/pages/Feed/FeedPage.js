@@ -40,13 +40,11 @@ const FeedPage = () => {
   const { data } = useRequestData({}, `${BASE_URL}/active-order`);
   const { order } = data;
 
-  console.log("feed",restaurants);
   useProtectedPage();
 
   useEffect(() => {
     setRestaurantList(restaurants);
     setOrder1(order);
-    console.log("FoodCArd >carrinho", productsCart);
   }, [order]);
 
   // useEffect(() => {

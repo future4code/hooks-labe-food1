@@ -15,6 +15,7 @@ import {
 } from '../../Styled';
 
 const RegisterAdressPage = () => {
+	const navigate = useNavigate()
 	const { form, handleInputChange, clear } = useForm({
 		street: '',
 		number: '',
@@ -27,7 +28,6 @@ const RegisterAdressPage = () => {
 
 	const onSubmitAddress = (event) => {
 		event.preventDefault();
-
 		const url = `${BASE_URL}/address`;
 
 		const headers = {
