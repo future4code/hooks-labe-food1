@@ -14,10 +14,12 @@ import {
 } from "../../components/RestaurantsCards/StyledRestaurantsCards";
 import GlobalStateContext from "../../global/GlobalStateContext";
 import { DivText } from "./StyledSearchePage";
+import useRequestData from "../../hooks/useRequestData";
+import { BASE_URL } from "../../constants/BASE_URL";
 
 function SearchPage() {
-  const { restaurantsList } = useContext(GlobalStateContext);
-  const { restaurants } = restaurantsList?.data;
+  const dataRestaurant = useRequestData([], `${BASE_URL}/restaurants`);
+  const { restaurants } = dataRestaurant?.data;
   const [searchItem, setSearchItem] = useState("");
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -29,7 +31,7 @@ function SearchPage() {
       return item.name.toLowerCase().includes(searchItem.toLowerCase());
     });
     if (filteredArray?.length === 0) {
-      return <DivText>Não Encontramos :(</DivText>;
+      return <DivText>Restaurante não encontrado</DivText>;
     } else {
       return filteredArray?.map((item) => {
         return (
